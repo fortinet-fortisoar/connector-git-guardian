@@ -1,0 +1,883 @@
+{
+  "name": "gitguardian",
+  "version": "1.0.0",
+  "label": "GitGuardian",
+  "description": "Scan your Source Code to detect API Keys, Passwords, Certificates, Encryption Keys and other sensitive data in Real-time.",
+  "publisher": "Fortinet",
+  "category": "",
+  "icon_small_name": "small.jpg",
+  "icon_large_name": "large.jpg",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "id": 38,
+  "configuration": {
+    "fields": [
+      {
+        "title": "API Key",
+        "type": "text",
+        "name": "api_key",
+        "required": true,
+        "visible": true,
+        "editable": true,
+        "description": "Specify the API Key which you have generated in GitGuardian",
+        "tooltip": "Your API key can be created and revoked from the API section of your dashboard."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "list_secret_incidents",
+      "title": "List Secret Incidents",
+      "annotation": "list_secret_incidents",
+      "description": "List secret incidents detected by the GitGuardian dashboard. Occurrences are not returned in this route.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "cursor",
+          "title": "Cursor",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Specify the Pagination Cursor offset."
+        },
+        {
+          "name": "per_page",
+          "title": "Per Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "By Default per_page is 20.",
+          "description": "Number of items to list per page."
+        },
+        {
+          "name": "date_before",
+          "title": "Date Before",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Entries found before this date."
+        },
+        {
+          "name": "date_after",
+          "title": "Date After",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Entries found after this date."
+        },
+        {
+          "name": "assignee_email",
+          "title": "Assignee Email",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Incidents assigned to this email."
+        },
+        {
+          "name": "assignee_id",
+          "title": "Assignee ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Incidents assigned to this user id."
+        },
+        {
+          "name": "status",
+          "title": "Status",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Incidents with the following status.",
+          "options": [
+            "Ignored",
+            "Triggered",
+            "Assigned",
+            "Resolved"
+          ]
+        },
+        {
+          "name": "severity",
+          "title": "Severity",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Filter incidents by severity.",
+          "options": [
+            "Critical",
+            "High",
+            "Medium",
+            "Low",
+            "Info",
+            "Unknown"
+          ]
+        },
+        {
+          "name": "validity",
+          "title": "Validity",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Secrets with the following validity.",
+          "options": [
+            "Valid",
+            "Invalid",
+            "Failed to Check",
+            "No Checker",
+            "Unknown"
+          ]
+        },
+        {
+          "name": "tags",
+          "title": "Tags",
+          "type": "multiselect",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Incidents with one of the following tags. Use None if you want to filter incidents with no tags.",
+          "options": [
+            "From Historical Scan",
+            "Ignored in Check Run",
+            "Public",
+            "Regression",
+            "Sensitive File",
+            "Test File",
+            "None"
+          ]
+        },
+        {
+          "name": "ordering",
+          "title": "Ordering",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
+          "options": [
+            "Date (Ascending)",
+            "Date (Descending)",
+            "Resolved At (Ascending)",
+            "Resolved At (Descending)",
+            "Ignored At (Ascending)",
+            "Ignored At (Descending)"
+          ]
+        },
+        {
+          "name": "detector_group_name",
+          "title": "Detector Group Name",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Incidents belonging to the specified detector group."
+        },
+        {
+          "name": "ignorer_id",
+          "title": "Ignorer ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Incidents ignored by this user id."
+        },
+        {
+          "name": "ignorer_api_token_id",
+          "title": "Ignorer Api Token ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Incidents ignored by this API token id."
+        },
+        {
+          "name": "resolver_id",
+          "title": "Resolver ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Incidents resolved by this user id."
+        },
+        {
+          "name": "resolver_api_token_id",
+          "title": "Resolver Api Token ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Incidents resolved by this API token id."
+        }
+      ],
+      "open": false,
+      "output_schema": [
+        {
+          "id": "",
+          "date": "",
+          "tags": [],
+          "status": "",
+          "detector": {
+            "name": "",
+            "family": "",
+            "nature": "",
+            "display_name": "",
+            "detector_group_name": "",
+            "detector_group_display_name": ""
+          },
+          "severity": "",
+          "validity": "",
+          "share_url": "",
+          "ignored_at": "",
+          "ignorer_id": "",
+          "regression": "",
+          "assignee_id": "",
+          "occurrences": "",
+          "resolved_at": "",
+          "resolver_id": "",
+          "secret_hash": "",
+          "ignore_reason": "",
+          "assignee_email": "",
+          "secret_revoked": "",
+          "gitguardian_url": "",
+          "occurrences_count": "",
+          "ignorer_api_token_id": "",
+          "resolver_api_token_id": ""
+        }
+      ]
+    },
+    {
+      "operation": "retrieve_a_secret_incident",
+      "title": "Retrieve a Secret Incident",
+      "annotation": "retrieve_a_secret_incident",
+      "description": "Retrieve secret incident detected by the GitGuardian dashboard with its occurrences.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "incident_id",
+          "title": "Incident ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "description": "The id of the incident to retrieve"
+        },
+        {
+          "name": "with_occurrences",
+          "title": "With Occurrences",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Defaullt value of With Occurrences is 20.",
+          "description": "Retrieve a number of occurrences of this incident."
+        }
+      ],
+      "open": false,
+      "output_schema": {
+        "id": "",
+        "date": "",
+        "tags": [],
+        "status": "",
+        "detector": {
+          "name": "",
+          "family": "",
+          "nature": "",
+          "display_name": "",
+          "detector_group_name": "",
+          "detector_group_display_name": ""
+        },
+        "severity": "",
+        "validity": "",
+        "share_url": "",
+        "ignored_at": "",
+        "ignorer_id": "",
+        "regression": "",
+        "assignee_id": "",
+        "occurrences": [
+          {
+            "id": "",
+            "sha": "",
+            "url": "",
+            "date": "",
+            "kind": "",
+            "source": {
+              "id": "",
+              "url": "",
+              "type": "",
+              "health": "",
+              "full_name": "",
+              "last_scan": {
+                "date": "",
+                "status": ""
+              },
+              "visibility": "",
+              "external_id": "",
+              "open_incidents_count": "",
+              "closed_incidents_count": ""
+            },
+            "matches": [
+              {
+                "name": "",
+                "indice_end": "",
+                "indice_start": "",
+                "pre_line_end": "",
+                "post_line_end": "",
+                "pre_line_start": "",
+                "post_line_start": ""
+              }
+            ],
+            "filepath": "",
+            "presence": "",
+            "author_info": "",
+            "author_name": "",
+            "incident_id": ""
+          }
+        ],
+        "resolved_at": "",
+        "resolver_id": "",
+        "secret_hash": "",
+        "ignore_reason": "",
+        "assignee_email": "",
+        "secret_revoked": "",
+        "gitguardian_url": "",
+        "occurrences_count": "",
+        "ignorer_api_token_id": "",
+        "resolver_api_token_id": ""
+      }
+    },
+    {
+      "operation": "update_a_secret_incident",
+      "title": "Update a Secret Incident",
+      "annotation": "update_a_secret_incident",
+      "description": "Update a secret incident\u0027s Severity",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Incident ID",
+          "type": "integer",
+          "name": "incident_id",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "The id of the incident to retrieve"
+        },
+        {
+          "title": "Severity",
+          "type": "select",
+          "name": "severity",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "Specify the severeness of the Incident",
+          "options": [
+            "Critical",
+            "High",
+            "Medium",
+            "Low",
+            "Info",
+            "Unknown"
+          ]
+        }
+      ],
+      "open": false,
+      "output_schema": {
+        "id": "",
+        "date": "",
+        "tags": [],
+        "status": "",
+        "detector": {
+          "name": "",
+          "family": "",
+          "nature": "",
+          "display_name": "",
+          "detector_group_name": "",
+          "detector_group_display_name": ""
+        },
+        "severity": "",
+        "validity": "",
+        "share_url": "",
+        "ignored_at": "",
+        "ignorer_id": "",
+        "regression": "",
+        "assignee_id": "",
+        "occurrences": "",
+        "resolved_at": "",
+        "resolver_id": "",
+        "secret_hash": "",
+        "ignore_reason": "",
+        "assignee_email": "",
+        "secret_revoked": "",
+        "gitguardian_url": "",
+        "occurrences_count": "",
+        "ignorer_api_token_id": "",
+        "resolver_api_token_id": ""
+      }
+    },
+    {
+      "operation": "assign_a_secret_incident",
+      "title": "Assign a secret incident ",
+      "annotation": "assign_a_secret_incident",
+      "description": "Assign secret incident detected by the GitGuardian dashboard to a workspace member by email.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Incident ID",
+          "type": "integer",
+          "name": "incident_id",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "The id of the incident to retrieve"
+        },
+        {
+          "title": "Email",
+          "type": "text",
+          "name": "email",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "Email of the member to assign."
+        },
+        {
+          "title": "Member ID",
+          "type": "integer",
+          "name": "member_id",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "description": "ID of the member to assign."
+        }
+      ],
+      "open": false,
+      "output_schema": {
+        "id": "",
+        "date": "",
+        "tags": [],
+        "status": "",
+        "detector": {
+          "name": "",
+          "family": "",
+          "nature": "",
+          "display_name": "",
+          "detector_group_name": "",
+          "detector_group_display_name": ""
+        },
+        "severity": "",
+        "validity": "",
+        "share_url": "",
+        "ignored_at": "",
+        "ignorer_id": "",
+        "regression": "",
+        "assignee_id": "",
+        "occurrences": "",
+        "resolved_at": "",
+        "resolver_id": "",
+        "secret_hash": "",
+        "ignore_reason": "",
+        "assignee_email": "",
+        "secret_revoked": "",
+        "gitguardian_url": "",
+        "occurrences_count": "",
+        "ignorer_api_token_id": "",
+        "resolver_api_token_id": ""
+      }
+    },
+    {
+      "operation": "unassign_a_secret_incident",
+      "title": "Unassign a secret incident ",
+      "annotation": "unassign_a_secret_incident",
+      "description": "Unassign secret incident from a workspace member by email.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Incident ID",
+          "type": "integer",
+          "name": "incident_id",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "The id of the incident to retrieve"
+        }
+      ],
+      "open": false,
+      "output_schema": {
+        "id": "",
+        "date": "",
+        "tags": [],
+        "status": "",
+        "detector": {
+          "name": "",
+          "family": "",
+          "nature": "",
+          "display_name": "",
+          "detector_group_name": "",
+          "detector_group_display_name": ""
+        },
+        "severity": "",
+        "validity": "",
+        "share_url": "",
+        "ignored_at": "",
+        "ignorer_id": "",
+        "regression": "",
+        "assignee_id": "",
+        "occurrences": "",
+        "resolved_at": "",
+        "resolver_id": "",
+        "secret_hash": "",
+        "ignore_reason": "",
+        "assignee_email": "",
+        "secret_revoked": "",
+        "gitguardian_url": "",
+        "occurrences_count": "",
+        "ignorer_api_token_id": "",
+        "resolver_api_token_id": ""
+      }
+    },
+    {
+      "operation": "resolve_a_secret_incident",
+      "title": "Resolve a secret incident ",
+      "annotation": "resolve_a_secret_incident",
+      "description": "Resolve a secret incident detected by the GitGuardian dashboard.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Secret Revoked",
+          "type": "checkbox",
+          "name": "secret_revoked",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "value": false,
+          "description": "Check If want to revoke the Incident"
+        },
+        {
+          "title": "Incident ID",
+          "type": "integer",
+          "name": "incident_id",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "The id of the incident to retrieve"
+        }
+      ],
+      "open": false,
+      "output_schema": {
+        "id": "",
+        "date": "",
+        "tags": [],
+        "status": "",
+        "detector": {
+          "name": "",
+          "family": "",
+          "nature": "",
+          "display_name": "",
+          "detector_group_name": "",
+          "detector_group_display_name": ""
+        },
+        "severity": "",
+        "validity": "",
+        "share_url": "",
+        "ignored_at": "",
+        "ignorer_id": "",
+        "regression": "",
+        "assignee_id": "",
+        "occurrences": "",
+        "resolved_at": "",
+        "resolver_id": "",
+        "secret_hash": "",
+        "ignore_reason": "",
+        "assignee_email": "",
+        "secret_revoked": "",
+        "gitguardian_url": "",
+        "occurrences_count": "",
+        "ignorer_api_token_id": "",
+        "resolver_api_token_id": ""
+      }
+    },
+    {
+      "operation": "content_scan",
+      "title": "Content Scan",
+      "annotation": "content_scan",
+      "description": "Scan provided document content for policy breaks.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Filename",
+          "type": "text",
+          "name": "filename",
+          "required": false,
+          "visible": true,
+          "editable": true,
+          "description": "Specify the name of the File"
+        },
+        {
+          "title": "Document",
+          "type": "text",
+          "name": "document",
+          "required": true,
+          "visible": true,
+          "editable": true,
+          "description": "Specify the Inner Text of the Document"
+        }
+      ],
+      "open": false,
+      "output_schema": {
+        "policies": [],
+        "policy_breaks": [
+          {
+            "type": "",
+            "policy": "",
+            "matches": [
+              {
+                "type": "",
+                "match": "",
+                "line_end": "",
+                "index_end": "",
+                "line_start": "",
+                "index_start": ""
+              }
+            ],
+            "validity": ""
+          }
+        ],
+        "policy_break_count": ""
+      }
+    },
+    {
+      "operation": "list_secret_occurrences",
+      "title": "List secret occurrences ",
+      "annotation": "list_secret_occurrences",
+      "description": "List occurrences of secrets in the monitored perimeter.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "cursor",
+          "title": "Cursor",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Specify the Pagination Cursor Offset."
+        },
+        {
+          "name": "per_page",
+          "title": "Per Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "By Default, The number of Secret Occurrences per_page is 20",
+          "description": "Number of items to list per page."
+        },
+        {
+          "name": "source_id",
+          "title": "Source ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Filter on the source ID."
+        },
+        {
+          "name": "source_name",
+          "title": "Source Name",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Entries matching this source name search."
+        },
+        {
+          "name": "incident_id",
+          "title": "Incident ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Filter by incident ID."
+        },
+        {
+          "name": "presence",
+          "title": "Presence",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Use Either \u0027present\u0027 OR \u0027removed\u0027",
+          "description": "Entries that have the following presence status."
+        },
+        {
+          "name": "author_name",
+          "title": "Author Name",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Should have minimum of 3 characters",
+          "description": "Entries matching this author name search."
+        },
+        {
+          "name": "author_info",
+          "title": "Author Info",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Should have minimum of 3 characters",
+          "description": "Entries matching this author email search."
+        },
+        {
+          "name": "sha",
+          "title": "Sha",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Should have minimum of 3 characters",
+          "description": "Entries starting with the commit sha search string."
+        },
+        {
+          "name": "filepath",
+          "title": "Filepath",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Should have minimum of 3 characters",
+          "description": "Entries matching this filepath search."
+        },
+        {
+          "name": "ordering",
+          "title": "Ordering",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027",
+          "description": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027"
+        },
+        {
+          "name": "date_before",
+          "title": "Date Before",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Entries found before this date."
+        },
+        {
+          "name": "date_after",
+          "title": "Date After",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "description": "Entries found after this date."
+        }
+      ],
+      "open": false,
+      "output_schema": [
+        {
+          "id": "",
+          "sha": "",
+          "url": "",
+          "date": "",
+          "kind": "",
+          "source": {
+            "id": "",
+            "url": "",
+            "type": "",
+            "health": "",
+            "full_name": "",
+            "last_scan": {
+              "date": "",
+              "status": ""
+            },
+            "visibility": "",
+            "external_id": "",
+            "open_incidents_count": "",
+            "closed_incidents_count": ""
+          },
+          "matches": [
+            {
+              "name": "",
+              "indice_end": "",
+              "indice_start": "",
+              "pre_line_end": "",
+              "post_line_end": "",
+              "pre_line_start": "",
+              "post_line_start": ""
+            }
+          ],
+          "filepath": "",
+          "presence": "",
+          "author_info": "",
+          "author_name": "",
+          "incident_id": ""
+        }
+      ]
+    }
+  ],
+  "active": true,
+  "system": false,
+  "playbook_collections": [
+    {
+      "@id": "/api/3/workflow_collections/7bf01932-0432-4973-9716-52f58ac23153",
+      "name": "Sample - GitGuardian - 1.0.0",
+      "description": "Sample playbooks for \"GitGuardian\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete."
+    }
+  ],
+  "icon_small": "",
+  "icon_large": "",
+  "help_online": "",
+  "status": "Completed",
+  "install_result": {
+    "output": "",
+    "message": "Success"
+  },
+  "config_count": 1,
+  "ingestion_supported": false,
+  "tags": [],
+  "remote_status": {
+    "output": "",
+    "status": "finished",
+    "message": "Success"
+  },
+  "installed": true,
+  "created": "2023-05-04T05:07:49.665665Z",
+  "modified": "2023-05-04T05:07:49.665720Z",
+  "requirements_installed": "Completed",
+  "agent": "8fc5a3c6ac306ee2189e9f3c5249378c",
+  "forked_from": "gitguardian_1_0_0"
+}
