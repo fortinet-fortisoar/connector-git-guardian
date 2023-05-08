@@ -4,7 +4,7 @@
   "label": "GitGuardian",
   "description": "Scan your Source Code to detect API Keys, Passwords, Certificates, Encryption Keys and other sensitive data in Real-time.",
   "publisher": "Fortinet",
-  "category": "",
+  "category": "Vulnerability and Risk Management",
   "icon_small_name": "small.jpg",
   "icon_large_name": "large.jpg",
   "cs_approved": true,
@@ -31,6 +31,7 @@
       "annotation": "list_secret_incidents",
       "description": "List secret incidents detected by the GitGuardian dashboard. Occurrences are not returned in this route.",
       "category": "investigation",
+      "tooltip": "List secret incidents detected by the GitGuardian dashboard. Occurrences are not returned in this route.",
       "is_config_required": true,
       "visible": true,
       "enabled": true,
@@ -42,6 +43,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Specify the Pagination Cursor Offset. Cursor is the Data point which is treated as the Centre of the Data List.",
           "description": "Specify the Pagination Cursor offset."
         },
         {
@@ -51,7 +53,7 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "By Default per_page is 20.",
+          "tooltip": "Number of items to list per page.By Default per_page is 20.",
           "description": "Number of items to list per page."
         },
         {
@@ -61,6 +63,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Entries found before this date.",
           "description": "Entries found before this date."
         },
         {
@@ -70,6 +73,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Entries found after this date.",
           "description": "Entries found after this date."
         },
         {
@@ -79,6 +83,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Incidents assigned to this email.",
           "description": "Incidents assigned to this email."
         },
         {
@@ -88,6 +93,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Incidents assigned to this user id.",
           "description": "Incidents assigned to this user id."
         },
         {
@@ -97,7 +103,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "description": "Incidents with the following status.",
+          "tooltip": "Filter Incidents with the following status.",
+          "description": "Filter Incidents with the following status.",
           "options": [
             "Ignored",
             "Triggered",
@@ -112,6 +119,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Filter incidents by severity.",
           "description": "Filter incidents by severity.",
           "options": [
             "Critical",
@@ -129,7 +137,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "description": "Secrets with the following validity.",
+          "tooltip": "List Secrets with the following validity.",
+          "description": "List Secrets with the following validity.",
           "options": [
             "Valid",
             "Invalid",
@@ -145,6 +154,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Incidents with one of the following tags. Use None if you want to filter incidents with no tags.",
           "description": "Incidents with one of the following tags. Use None if you want to filter incidents with no tags.",
           "options": [
             "From Historical Scan",
@@ -163,7 +173,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "description": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
+          "tooltip": "Sort the results by their field value.",
+          "description": "Sort the results by their field value.",
           "options": [
             "Date (Ascending)",
             "Date (Descending)",
@@ -180,6 +191,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Incidents belonging to the specified detector group.",
           "description": "Incidents belonging to the specified detector group."
         },
         {
@@ -189,6 +201,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Incidents ignored by this user id.",
           "description": "Incidents ignored by this user id."
         },
         {
@@ -198,6 +211,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Incidents ignored by this API token id.",
           "description": "Incidents ignored by this API token id."
         },
         {
@@ -207,6 +221,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Incidents resolved by this user id.",
           "description": "Incidents resolved by this user id."
         },
         {
@@ -216,6 +231,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Incidents resolved by this API token id.",
           "description": "Incidents resolved by this API token id."
         }
       ],
@@ -272,6 +288,7 @@
           "editable": true,
           "visible": true,
           "required": true,
+          "tooltip": "The id of the incident to retrieve",
           "description": "The id of the incident to retrieve"
         },
         {
@@ -281,7 +298,7 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Defaullt value of With Occurrences is 20.",
+          "tooltip": "Retrieve a number of occurrences of this incident.Defaullt value of With Occurrences is 20.",
           "description": "Retrieve a number of occurrences of this incident."
         }
       ],
@@ -369,21 +386,23 @@
       "enabled": true,
       "parameters": [
         {
+          "name": "incident_id",
           "title": "Incident ID",
           "type": "integer",
-          "name": "incident_id",
-          "required": true,
-          "visible": true,
           "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The id of the incident to retrieve",
           "description": "The id of the incident to retrieve"
         },
         {
+          "name": "severity",
           "title": "Severity",
           "type": "select",
-          "name": "severity",
-          "required": true,
-          "visible": true,
           "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the severeness of the Incident",
           "description": "Specify the severeness of the Incident",
           "options": [
             "Critical",
@@ -440,30 +459,33 @@
       "enabled": true,
       "parameters": [
         {
+          "name": "incident_id",
           "title": "Incident ID",
           "type": "integer",
-          "name": "incident_id",
-          "required": true,
-          "visible": true,
           "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The id of the incident to retrieve",
           "description": "The id of the incident to retrieve"
         },
         {
+          "name": "email",
           "title": "Email",
           "type": "text",
-          "name": "email",
-          "required": true,
-          "visible": true,
           "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Email of the member to assign.",
           "description": "Email of the member to assign."
         },
         {
+          "name": "member_id",
           "title": "Member ID",
           "type": "integer",
-          "name": "member_id",
-          "required": false,
-          "visible": true,
           "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "ID of the member to assign.",
           "description": "ID of the member to assign."
         }
       ],
@@ -512,12 +534,13 @@
       "enabled": true,
       "parameters": [
         {
+          "name": "incident_id",
           "title": "Incident ID",
           "type": "integer",
-          "name": "incident_id",
-          "required": true,
-          "visible": true,
           "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The id of the incident to retrieve",
           "description": "The id of the incident to retrieve"
         }
       ],
@@ -566,22 +589,24 @@
       "enabled": true,
       "parameters": [
         {
+          "name": "secret_revoked",
           "title": "Secret Revoked",
           "type": "checkbox",
-          "name": "secret_revoked",
-          "required": true,
-          "visible": true,
           "editable": true,
+          "visible": true,
+          "required": true,
           "value": false,
+          "tooltip": "Check If want to revoke the Incident",
           "description": "Check If want to revoke the Incident"
         },
         {
+          "name": "incident_id",
           "title": "Incident ID",
           "type": "integer",
-          "name": "incident_id",
-          "required": true,
-          "visible": true,
           "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "The id of the incident to retrieve",
           "description": "The id of the incident to retrieve"
         }
       ],
@@ -630,21 +655,23 @@
       "enabled": true,
       "parameters": [
         {
+          "name": "filename",
           "title": "Filename",
           "type": "text",
-          "name": "filename",
-          "required": false,
-          "visible": true,
           "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the name of the File",
           "description": "Specify the name of the File"
         },
         {
+          "name": "document",
           "title": "Document",
           "type": "text",
-          "name": "document",
-          "required": true,
-          "visible": true,
           "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the Inner Text of the Document",
           "description": "Specify the Inner Text of the Document"
         }
       ],
@@ -688,6 +715,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Specify the Pagination Cursor Offset.",
           "description": "Specify the Pagination Cursor Offset."
         },
         {
@@ -697,7 +725,7 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "By Default, The number of Secret Occurrences per_page is 20",
+          "tooltip": "Number of items to list per page. By Default, The number of Secret Occurrences per_page is 20",
           "description": "Number of items to list per page."
         },
         {
@@ -707,6 +735,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Filter on the source ID.",
           "description": "Filter on the source ID."
         },
         {
@@ -716,6 +745,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Entries matching this source name search.",
           "description": "Entries matching this source name search."
         },
         {
@@ -725,6 +755,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Filter by incident ID.",
           "description": "Filter by incident ID."
         },
         {
@@ -734,7 +765,7 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Use Either \u0027present\u0027 OR \u0027removed\u0027",
+          "tooltip": "Entries that have the following presence status. Use Either \u0027present\u0027 OR \u0027removed\u0027",
           "description": "Entries that have the following presence status."
         },
         {
@@ -744,7 +775,7 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Should have minimum of 3 characters",
+          "tooltip": "Entries matching this author name search. Should have minimum of 3 characters",
           "description": "Entries matching this author name search."
         },
         {
@@ -754,7 +785,7 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Should have minimum of 3 characters",
+          "tooltip": "Entries matching this author email search. Should have minimum of 3 characters",
           "description": "Entries matching this author email search."
         },
         {
@@ -764,7 +795,7 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Should have minimum of 3 characters",
+          "tooltip": "Entries starting with the commit \"sha\" search id. Should have minimum of 3 characters.\n\nExample: sha\u003dfccebf0562698ab99dc10dcb2e864fc563b25ac4",
           "description": "Entries starting with the commit sha search string."
         },
         {
@@ -774,7 +805,7 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Should have minimum of 3 characters",
+          "tooltip": "Entries matching this filepath search. Should have minimum of 3 characters",
           "description": "Entries matching this filepath search."
         },
         {
@@ -794,6 +825,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Entries found before this date.",
           "description": "Entries found before this date."
         },
         {
@@ -803,6 +835,7 @@
           "editable": true,
           "visible": true,
           "required": false,
+          "tooltip": "Entries found after this date.",
           "description": "Entries found after this date."
         }
       ],
