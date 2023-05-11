@@ -43,8 +43,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Pagination Cursor Token. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there.",
-          "description": "Specify the Pagination Cursor offset."
+          "tooltip": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there.",
+          "description": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there."
         },
         {
           "name": "per_page",
@@ -63,8 +63,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Date by which Entries found before this date will be shown.",
-          "description": "Specify the Date by which Entries found before this date will be shown."
+          "tooltip": "Specify the Before Date by which Entries found before this date will be shown.",
+          "description": "Specify the Before Date by which Entries found before this date will be shown."
         },
         {
           "name": "date_after",
@@ -73,8 +73,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Date by which Entries found after this date will be shown.",
-          "description": "Specify the Date by which Entries found after this date will be shown."
+          "tooltip": "Specify the After Date by which Entries found after this date will be shown.",
+          "description": "Specify the After Date by which Entries found after this date will be shown."
         },
         {
           "name": "assignee_email",
@@ -103,8 +103,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Filter Incidents with the following status.",
-          "description": "Filter Incidents with the following status.",
+          "tooltip": "Filter Incidents with the following status. You can Select the following options (Ignored, Triggered, Assigned, Resolved)",
+          "description": "Filter Incidents with the following status. You can Select the following options (Ignored, Triggered, Assigned, Resolved)",
           "options": [
             "Ignored",
             "Triggered",
@@ -119,8 +119,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the severeness of the Incident.",
-          "description": "Specify the severeness of the Incident.",
+          "tooltip": "Specify the severeness of the Incident. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
+          "description": "Specify the severeness of the Incident. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
           "options": [
             "Critical",
             "High",
@@ -137,8 +137,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "List Secrets with the following validity.",
-          "description": "List Secrets with the following validity.",
+          "tooltip": "Show the List of Secrets with the following validity. You can choose from (Valid, Invalid, Failed to Check, No Checker, Unknown)",
+          "description": "Show the List of Secrets with the following validity. You can choose from (Valid, Invalid, Failed to Check, No Checker, Unknown)",
           "options": [
             "Valid",
             "Invalid",
@@ -191,8 +191,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Group Name of the Detector by which Incidents will be filtered.",
-          "description": "Filter Incidents belonging to the specified detector group."
+          "tooltip": "Specify the Group Name of the Detector by which Incidents having the specified Group Name will be filtered.",
+          "description": "Specify the Group Name of the Detector by which Incidents having the specified Group Name will be filtered."
         },
         {
           "name": "ignorer_id",
@@ -201,8 +201,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the User ID whose Incidents will be ignored.",
-          "description": "Specify the User ID whose Incidents will be ignored."
+          "tooltip": "Specify the User ID by which Incidents having User ID as given Specified ID will be ignored.",
+          "description": "Specify the User ID by which Incidents having User ID as given Specified ID will be ignored."
         },
         {
           "name": "ignorer_api_token_id",
@@ -211,8 +211,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the API Token ID by which Incidents will be ignored and not be shown.",
-          "description": "Specify the API Token ID by which Incidents will be ignored and not be shown."
+          "tooltip": "Specify the API Token ID by which Incidents having API Token as the given specified Token ID  will be ignored and not be shown.",
+          "description": "Specify the API Token ID by which Incidents having API Token as the given specified Token ID  will be ignored and not be shown."
         },
         {
           "name": "resolver_id",
@@ -221,8 +221,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the ID of the Resolver by which Incidents will be filtered and shown.",
-          "description": "Filter Incidents resolved by this user id."
+          "tooltip": "Specify the ID of the Resolver by which Incidents having Resolver ID same as your provided Resolver ID will be filtered and shown.",
+          "description": "Specify the ID of the Resolver by which Incidents having Resolver ID same as your provided Resolver ID will be filtered and shown."
         },
         {
           "name": "resolver_api_token_id",
@@ -231,8 +231,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the API Token ID of the Resolver by which Incidents will be filtered and shown.",
-          "description": "Filter Incidents resolved by this specified API token id."
+          "tooltip": "Specify the API Token ID by which Incidents having Resolver API Token as your specified Token ID  will be shown.",
+          "description": "Specify the API Token ID by which Incidents having Resolver API Token as your specified Token ID  will be shown."
         }
       ],
       "open": false,
@@ -288,8 +288,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the ID of the incident to be retrieved.",
-          "description": "Specify the ID of the incident to be retrieved."
+          "tooltip": "Specify the ID of the incident whose Details are to be retrieved.",
+          "description": "Specify the ID of the incident whose Details are to be retrieved."
         },
         {
           "name": "with_occurrences",
@@ -298,7 +298,7 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Number of Occurrences of the Incident. Maximum these much occurences of Incident will be fetched. Defaullt value of Number of Occurrences is 20.",
+          "tooltip": "Specify the Number of Occurrences of the Incident which are to be Fetched. Maximum these much occurences of Incident will be fetched. Defaullt value of Number of Occurrences is 20.",
           "description": "Retrieve a number of occurrences of this incident."
         }
       ],
@@ -392,8 +392,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the id of the incident to be retrieved.",
-          "description": "Specify the id of the incident to be retrieved."
+          "tooltip": "Specify the ID of the incident which is to be updated.",
+          "description": "Specify the ID of the incident which is to be updated."
         },
         {
           "name": "severity",
@@ -402,8 +402,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the severeness of the Incident.",
-          "description": "Specify the severeness of the Incident.",
+          "tooltip": "Specify the severeness of the Incident. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
+          "description": "Specify the severeness of the Incident. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
           "options": [
             "Critical",
             "High",
@@ -465,8 +465,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the id of the incident to be retrieved.",
-          "description": "Specify the id of the incident to be retrieved."
+          "tooltip": "Specify the ID of the incident whose Assignee is to be added.",
+          "description": "Specify the ID of the incident whose Assignee is to be added."
         },
         {
           "name": "email",
@@ -540,8 +540,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the id of the incident which is to be retrieved.",
-          "description": "Specify the id of the incident which is to be retrieved."
+          "tooltip": "Specify the ID of the incident whose Assignee is to be removed.",
+          "description": "Specify the ID of the incident whose Assignee is to be removed."
         }
       ],
       "open": false,
@@ -596,8 +596,8 @@
           "visible": true,
           "required": true,
           "value": false,
-          "tooltip": "Check If want to revoke the Incident",
-          "description": "Check If want to revoke the Incident"
+          "tooltip": "Check the checkbox If you want to revoke the Incident",
+          "description": "Check the checkbox If you want to revoke the Incident"
         },
         {
           "name": "incident_id",
@@ -606,8 +606,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "The id of the incident to retrieve",
-          "description": "The id of the incident to retrieve"
+          "tooltip": "Specify The id of the incident which is to be retrieved.",
+          "description": "Specify The id of the incident which is to be retrieved."
         }
       ],
       "open": false,
@@ -661,8 +661,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the name of the File.",
-          "description": "Specify the name of the File."
+          "tooltip": "Specify the name of the File you want to Scan.",
+          "description": "Specify the name of the File you want to Scan."
         },
         {
           "name": "document",
@@ -715,8 +715,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Pagination Cursor Token. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there.",
-          "description": "Specify the Pagination Cursor Token. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there."
+          "tooltip": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there.",
+          "description": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there."
         },
         {
           "name": "per_page",
@@ -735,8 +735,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Source ID to which incidents are to be filtered.",
-          "description": "Specify the Source ID to which incidents are to be filtered."
+          "tooltip": "Specify the Source ID to which incidents having the same Source ID are to be filtered and shown.",
+          "description": "Specify the Source ID to which incidents having the same Source ID are to be filtered and shown."
         },
         {
           "name": "source_name",
@@ -745,8 +745,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Source Name to which incidents are to be filtered.",
-          "description": "Specify the Source Name to which incidents are to be filtered."
+          "tooltip": "Specify the Source Name to which incidents having the same Source Name are to be filtered and shown.",
+          "description": "Specify the Source Name to which incidents having the same Source Name are to be filtered and shown."
         },
         {
           "name": "incident_id",
@@ -755,8 +755,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the ID of the incident to be retrieved.",
-          "description": "Specify the ID of the incident to be retrieved."
+          "tooltip": "Specify the ID of the incident which is to be retrieved.",
+          "description": "Specify the ID of the incident which is to be retrieved."
         },
         {
           "name": "presence",
@@ -765,7 +765,7 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Filter Entries that have the following presence status. Use Either \u0027present\u0027 OR \u0027removed\u0027",
+          "tooltip": "Fetch Entries that have the following presence status. You can use Either \u0027present\u0027 OR \u0027removed\u0027",
           "description": "Entries that have the following presence status."
         },
         {
@@ -775,8 +775,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Author Name to which incidents are to be filtered. Should have minimum of 3 characters",
-          "description": "Specify the Author Name to which incidents are to be filtered. Should have minimum of 3 characters"
+          "tooltip": "Specify the Author Name to which incidents having same Author Name filtered. Should have minimum of 3 characters",
+          "description": "Specify the Author Name to which incidents having same Author Name filtered. Should have minimum of 3 characters"
         },
         {
           "name": "author_info",
@@ -785,8 +785,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Author Info to which incidents are to be filtered. Should have minimum of 3 characters",
-          "description": "Specify the Author Info to which incidents are to be filtered. Should have minimum of 3 characters"
+          "tooltip": "Specify the Author Info to which incidents having same Author Info are filtered. Should have minimum of 3 characters",
+          "description": "Specify the Author Info to which incidents having same Author Info are filtered. Should have minimum of 3 characters"
         },
         {
           "name": "sha",
@@ -825,8 +825,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Date by which Entries found before this date will be shown.",
-          "description": "Specify the Date by which Entries found before this date will be shown."
+          "tooltip": "Specify the Before Date by which Entries found before this date will be shown.",
+          "description": "Specify the Before Date by which Entries found before this date will be shown."
         },
         {
           "name": "date_after",
@@ -835,8 +835,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Date by which Entries found after this date will be shown.",
-          "description": "Specify the Date by which Entries found after this date will be shown."
+          "tooltip": "Specify the After Date by which Entries found after this date will be shown.",
+          "description": "Specify the After Date by which Entries found after this date will be shown."
         }
       ],
       "open": false,
