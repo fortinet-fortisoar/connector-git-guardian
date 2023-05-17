@@ -7,8 +7,8 @@ from .make_rest_api_call import MakeRestApiCall
 
 def _check_health(config: dict) -> bool:
     try:
-        endpoint = "api.gitguardian.com/v1/incidents/secrets"  # edit endpoint
-        method = "GET"  # GET/POST/PUT/DELETE
+        endpoint = "v1/incidents/secrets"
+        method = "GET"
         api_token = f"Token {config.get('api_key')}"
         method_header = {"Authorization": api_token}
         MS = MakeRestApiCall(config=config)

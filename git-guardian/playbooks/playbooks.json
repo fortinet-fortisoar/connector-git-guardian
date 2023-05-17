@@ -1,0 +1,800 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@context": "/api/3/contexts/WorkflowCollection",
+      "@type": "WorkflowCollection",
+      "name": "Sample - GitGuardian - 1.0.0",
+      "description": "Sample playbooks for \"GitGuardian\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
+      "visible": true,
+      "image": "/api/3/images/dd7c0e37-35db-4352-a222-8ea1286b959d",
+      "id": 69,
+      "createDate": 1684307997.34688,
+      "modifyDate": 1684307997.34688,
+      "deletedAt": null,
+      "importedBy": [],
+      "recordTags": [
+        "Git",
+        "git-guardian"
+      ],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Assign Secret Incident ",
+          "aliasName": null,
+          "tag": "#GitGuardian",
+          "description": "Assign secret incident detected by the GitGuardian dashboard to a workspace member by email.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": null,
+          "collection": "/api/3/workflow_collections/9a0b884b-edee-4177-a3a3-236b6acec91f",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/1f6bc8a8-e5be-4313-9d46-ec7804d8be2b",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Assign Secret Incident ",
+              "description": null,
+              "arguments": {
+                "name": "GitGuardian",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "git-guardian",
+                "operation": "assign_a_secret_incident",
+                "operationTitle": "Assign Secret Incident ",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "665bec7e-f2a9-4f07-842c-0ad018624199"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "4538741b-21f2-4ddb-bf8f-a77b43548efa",
+                "title": "GitGuardian: Assign Secret Incident ",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "1f6bc8a8-e5be-4313-9d46-ec7804d8be2b"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Assign Secret Incident ",
+              "targetStep": "/api/3/workflow_steps/665bec7e-f2a9-4f07-842c-0ad018624199",
+              "sourceStep": "/api/3/workflow_steps/1f6bc8a8-e5be-4313-9d46-ec7804d8be2b",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "03918250-cc46-41f6-97a4-e2c4b0f253e4"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "459eceb0-2ad5-4292-8be4-3115fa9a1bb5",
+          "id": 688,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Git",
+            "git-guardian"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Update Secret Incident",
+          "aliasName": null,
+          "tag": "#GitGuardian",
+          "description": "Update a secret incident's Severity",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": null,
+          "collection": "/api/3/workflow_collections/9a0b884b-edee-4177-a3a3-236b6acec91f",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/292acd5f-525c-4981-8854-7d92fe3a6da3",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "1acfd94d-5afc-4d86-a85c-c094eff88d53",
+                "title": "GitGuardian: Update Secret Incident",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "292acd5f-525c-4981-8854-7d92fe3a6da3"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Update Secret Incident",
+              "description": null,
+              "arguments": {
+                "name": "GitGuardian",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "git-guardian",
+                "operation": "update_a_secret_incident",
+                "operationTitle": "Update Secret Incident",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "a3ab087c-7525-4e42-a3b3-072a6fa2ac2d"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Update Secret Incident",
+              "targetStep": "/api/3/workflow_steps/a3ab087c-7525-4e42-a3b3-072a6fa2ac2d",
+              "sourceStep": "/api/3/workflow_steps/292acd5f-525c-4981-8854-7d92fe3a6da3",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "6768552d-c8d3-4fdd-985c-83732c9a9cd7"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "5129490c-b999-475a-a372-d6f3feaec429",
+          "id": 687,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Git",
+            "git-guardian"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Secret Incidents Details",
+          "aliasName": null,
+          "tag": "#GitGuardian",
+          "description": "List secret incidents detected by the GitGuardian dashboard. Occurrences are not returned in this route.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": null,
+          "collection": "/api/3/workflow_collections/9a0b884b-edee-4177-a3a3-236b6acec91f",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/0d44cd79-383f-4730-8b72-d02f09fac1cc",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Secret Incidents Details",
+              "description": null,
+              "arguments": {
+                "name": "GitGuardian",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "git-guardian",
+                "operation": "list_secret_incidents",
+                "operationTitle": "Get Secret Incidents Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "2b5b7a9a-ce46-4153-869c-a14562b17723"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "2bea15ce-8577-400d-97d9-3179746948af",
+                "title": "GitGuardian: Get Secret Incidents Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "0d44cd79-383f-4730-8b72-d02f09fac1cc"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Get Secret Incidents Details",
+              "targetStep": "/api/3/workflow_steps/2b5b7a9a-ce46-4153-869c-a14562b17723",
+              "sourceStep": "/api/3/workflow_steps/0d44cd79-383f-4730-8b72-d02f09fac1cc",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "11181f90-9ece-4342-8e94-f300d4b73750"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "581c1635-264f-437e-a2d7-1e2a0bd50fc0",
+          "id": 685,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Git",
+            "git-guardian"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Secret Incident Details",
+          "aliasName": null,
+          "tag": "#GitGuardian",
+          "description": "Retrieve secret incident detected by the GitGuardian dashboard with its occurrences.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": null,
+          "collection": "/api/3/workflow_collections/9a0b884b-edee-4177-a3a3-236b6acec91f",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/a75f0625-c6e2-4995-8799-7f0ecbf31f01",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Secret Incident Details",
+              "description": null,
+              "arguments": {
+                "name": "GitGuardian",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "git-guardian",
+                "operation": "retrieve_a_secret_incident",
+                "operationTitle": "Get Secret Incident Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "a697df07-20f7-4c0b-8098-13b97d415c34"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "9438cd27-64a7-4cd1-8fa3-4358dc934926",
+                "title": "GitGuardian: Get Secret Incident Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "a75f0625-c6e2-4995-8799-7f0ecbf31f01"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Get Secret Incident Details",
+              "targetStep": "/api/3/workflow_steps/a697df07-20f7-4c0b-8098-13b97d415c34",
+              "sourceStep": "/api/3/workflow_steps/a75f0625-c6e2-4995-8799-7f0ecbf31f01",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "31d1917a-1bb7-4b83-87b4-f020fd45d10a"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "b666612d-da85-4ea6-8b48-aaa1115cdf12",
+          "id": 686,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Git",
+            "git-guardian"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Secret Occurrences Details",
+          "aliasName": null,
+          "tag": "#GitGuardian",
+          "description": "List occurrences of secrets in the monitored perimeter.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": null,
+          "collection": "/api/3/workflow_collections/9a0b884b-edee-4177-a3a3-236b6acec91f",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/7a3b389f-e664-4b1f-9de3-50d9fc10cd17",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Secret Occurrences Details",
+              "description": null,
+              "arguments": {
+                "name": "GitGuardian",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "git-guardian",
+                "operation": "list_secret_occurrences",
+                "operationTitle": "Get Secret Occurrences Details",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "62858442-716e-431d-9c4b-8796e3393853"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "eac43730-1281-4f07-b62f-685337e45a7f",
+                "title": "GitGuardian: Get Secret Occurrences Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "7a3b389f-e664-4b1f-9de3-50d9fc10cd17"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Get Secret Occurrences Details",
+              "targetStep": "/api/3/workflow_steps/62858442-716e-431d-9c4b-8796e3393853",
+              "sourceStep": "/api/3/workflow_steps/7a3b389f-e664-4b1f-9de3-50d9fc10cd17",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "ada58de9-20ed-4a90-8003-79c78f007c63"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "bbb83b1a-84e1-4676-851d-117a52a3f767",
+          "id": 692,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Git",
+            "git-guardian"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Resolve Secret Incident ",
+          "aliasName": null,
+          "tag": "#GitGuardian",
+          "description": "Resolve a secret incident detected by the GitGuardian dashboard.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": null,
+          "collection": "/api/3/workflow_collections/9a0b884b-edee-4177-a3a3-236b6acec91f",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/6a9e9e53-6ced-4a20-9026-f98a53265cbb",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Resolve Secret Incident ",
+              "description": null,
+              "arguments": {
+                "name": "GitGuardian",
+                "config": "''",
+                "params": {
+                  "secret_revoked": false
+                },
+                "version": "1.0.0",
+                "connector": "git-guardian",
+                "operation": "resolve_a_secret_incident",
+                "operationTitle": "Resolve Secret Incident ",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "db704e47-888f-407a-9574-791fb2ca35eb"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "d486bf75-6c0a-4435-a4b9-5ad80cd56ec9",
+                "title": "GitGuardian: Resolve Secret Incident ",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "6a9e9e53-6ced-4a20-9026-f98a53265cbb"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Resolve Secret Incident ",
+              "targetStep": "/api/3/workflow_steps/db704e47-888f-407a-9574-791fb2ca35eb",
+              "sourceStep": "/api/3/workflow_steps/6a9e9e53-6ced-4a20-9026-f98a53265cbb",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "daf1698d-a125-43c2-81f4-bf53d2b91602"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "c0175bc2-1500-4dc1-a378-f5515c4ccc5d",
+          "id": 690,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Git",
+            "git-guardian"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Scan Document's Content",
+          "aliasName": null,
+          "tag": "#GitGuardian",
+          "description": "Scan provided document content for policy breaks.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1684309984,
+          "collection": "/api/3/workflow_collections/9a0b884b-edee-4177-a3a3-236b6acec91f",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/ae17e57d-8ad6-42ee-8524-3c538982a69f",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Scan Documents Content",
+              "description": null,
+              "arguments": {
+                "name": "GitGuardian",
+                "config": "9992fb43-c717-4dce-8572-89ae014587e1",
+                "params": {
+                  "input": "File IRI",
+                  "value": "{{vars.input.records[0].file['@id']}}"
+                },
+                "version": "1.0.0",
+                "connector": "git-guardian",
+                "operation": "content_scan",
+                "operationTitle": "Scan Document's Content",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "594ee6f9-5965-49f5-aab7-5304803f2553"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "9dd79e3d-77ff-4043-8aa9-daa537c3664c",
+                "title": "GitGuardian: Scan Document's Content",
+                "resources": [
+                  "attachments"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "params": [],
+                    "records": "{{vars.input.records}}"
+                  }
+                },
+                "displayConditions": {
+                  "alerts": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  },
+                  "attachments": {
+                    "sort": [],
+                    "limit": 30,
+                    "logic": "AND",
+                    "filters": []
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": false,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "ae17e57d-8ad6-42ee-8524-3c538982a69f"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Scan Document's Content",
+              "targetStep": "/api/3/workflow_steps/594ee6f9-5965-49f5-aab7-5304803f2553",
+              "sourceStep": "/api/3/workflow_steps/ae17e57d-8ad6-42ee-8524-3c538982a69f",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "30524d0d-b6c3-4ca3-9437-f2d496d3a42b"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "d82ef102-a1fc-4129-a232-7d7e5d61eeb3",
+          "id": 691,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Git",
+            "git-guardian"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Unassign Secret Incident ",
+          "aliasName": null,
+          "tag": "#GitGuardian",
+          "description": "Unassign secret incident from a workspace member by email.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": null,
+          "collection": "/api/3/workflow_collections/9a0b884b-edee-4177-a3a3-236b6acec91f",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/b9f7003d-aafd-48ac-9c39-8c75a56b56c1",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "arguments": {
+                "route": "1aefa8a0-fb64-4a3b-b3b1-cfd4e9a6fa88",
+                "title": "GitGuardian: Unassign Secret Incident ",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "executeButtonText": "Execute",
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "b9f7003d-aafd-48ac-9c39-8c75a56b56c1"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Unassign Secret Incident ",
+              "description": null,
+              "arguments": {
+                "name": "GitGuardian",
+                "config": "''",
+                "params": [],
+                "version": "1.0.0",
+                "connector": "git-guardian",
+                "operation": "unassign_a_secret_incident",
+                "operationTitle": "Unassign Secret Incident ",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "81263e97-b29a-4d48-9a98-7dd7b2529b63"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Start-> Unassign Secret Incident ",
+              "targetStep": "/api/3/workflow_steps/81263e97-b29a-4d48-9a98-7dd7b2529b63",
+              "sourceStep": "/api/3/workflow_steps/b9f7003d-aafd-48ac-9c39-8c75a56b56c1",
+              "label": null,
+              "isExecuted": false,
+              "group": null,
+              "uuid": "8ca18dc0-fa1c-4f07-9fa4-c9885adff821"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "db392256-df1c-49f8-9515-5eb8c8a6a139",
+          "id": 689,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Git",
+            "git-guardian"
+          ]
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "Git",
+    "git-guardian"
+  ]
+}

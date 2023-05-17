@@ -1,5 +1,5 @@
 {
-  "name": "gitguardian",
+  "name": "git-guardian",
   "version": "1.0.0",
   "label": "GitGuardian",
   "description": "Scan your Source Code to detect API Keys, Passwords, Certificates, Encryption Keys and other sensitive data in Real-time.",
@@ -13,21 +13,31 @@
   "configuration": {
     "fields": [
       {
+        "name": "api_key",
         "title": "API Key",
         "type": "text",
-        "name": "api_key",
-        "required": true,
-        "visible": true,
         "editable": true,
-        "description": "Specify the API Key which you have generated in GitGuardian",
-        "tooltip": "Your API key can be created and revoked from the API section of your dashboard."
+        "visible": true,
+        "required": true,
+        "tooltip": "Specify the API Key which you have generated in GitGuardian. Your API key can be created and revoked from the API section of your dashboard on GitGuardian.",
+        "description": "Specify the API Key which you have generated in GitGuardian. Your API key can be created and revoked from the API section of your dashboard on GitGuardian."
+      },
+      {
+        "name": "verify_ssl",
+        "title": "Verify SSL",
+        "type": "checkbox",
+        "editable": true,
+        "visible": true,
+        "required": false,
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
       }
     ]
   },
   "operations": [
     {
       "operation": "list_secret_incidents",
-      "title": "List Secret Incidents",
+      "title": "Get Secret Incidents List",
       "annotation": "list_secret_incidents",
       "description": "List secret incidents detected by the GitGuardian dashboard. Occurrences are not returned in this route.",
       "category": "investigation",
@@ -36,16 +46,6 @@
       "visible": true,
       "enabled": true,
       "parameters": [
-        {
-          "name": "cursor",
-          "title": "Cursor",
-          "type": "text",
-          "editable": true,
-          "visible": true,
-          "required": false,
-          "tooltip": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there.",
-          "description": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there."
-        },
         {
           "name": "per_page",
           "title": "Number of Incidents Per Page",
@@ -58,7 +58,7 @@
         },
         {
           "name": "date_before",
-          "title": "Incidents before the Date",
+          "title": "Incidents Before the Date",
           "type": "datetime",
           "editable": true,
           "visible": true,
@@ -68,33 +68,13 @@
         },
         {
           "name": "date_after",
-          "title": "Incidents after the Date",
+          "title": "Incidents After the Date",
           "type": "datetime",
           "editable": true,
           "visible": true,
           "required": false,
           "tooltip": "Specify the After Date by which Entries found after this date will be shown.",
           "description": "Specify the After Date by which Entries found after this date will be shown."
-        },
-        {
-          "name": "assignee_email",
-          "title": "Assignee Email",
-          "type": "text",
-          "editable": true,
-          "visible": true,
-          "required": false,
-          "tooltip": "Specify the Email Id of the member which is to be assigned the Incident.",
-          "description": "Specify the Email Id of the member which is to be assigned the Incident."
-        },
-        {
-          "name": "assignee_id",
-          "title": "Assignee ID",
-          "type": "integer",
-          "editable": true,
-          "visible": true,
-          "required": false,
-          "tooltip": "Specify the Member ID of the member which is to be assigned the Incident.",
-          "description": "Specify the Member ID of the member which is to be assigned the Incident."
         },
         {
           "name": "status",
@@ -185,6 +165,26 @@
           ]
         },
         {
+          "name": "assignee_email",
+          "title": "Assignee Email",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Email Id of the member which is to be assigned the Incident.",
+          "description": "Specify the Email Id of the member which is to be assigned the Incident."
+        },
+        {
+          "name": "assignee_id",
+          "title": "Assignee ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Member ID of the member which is to be assigned the Incident.",
+          "description": "Specify the Member ID of the member which is to be assigned the Incident."
+        },
+        {
           "name": "detector_group_name",
           "title": "Detector Group Name",
           "type": "text",
@@ -206,7 +206,7 @@
         },
         {
           "name": "ignorer_api_token_id",
-          "title": "Ignorer Api Token ID",
+          "title": "Ignorer API Token ID",
           "type": "text",
           "editable": true,
           "visible": true,
@@ -226,13 +226,23 @@
         },
         {
           "name": "resolver_api_token_id",
-          "title": "Resolver Api Token ID",
+          "title": "Resolver API Token ID",
           "type": "text",
           "editable": true,
           "visible": true,
           "required": false,
           "tooltip": "Specify the API Token ID by which Incidents having Resolver API Token as your specified Token ID  will be shown.",
           "description": "Specify the API Token ID by which Incidents having Resolver API Token as your specified Token ID  will be shown."
+        },
+        {
+          "name": "cursor",
+          "title": "Cursor",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there.",
+          "description": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there."
         }
       ],
       "open": false,
@@ -273,7 +283,7 @@
     },
     {
       "operation": "retrieve_a_secret_incident",
-      "title": "Retrieve a Secret Incident",
+      "title": "Get Secret Incident Details",
       "annotation": "retrieve_a_secret_incident",
       "description": "Retrieve secret incident detected by the GitGuardian dashboard with its occurrences.",
       "category": "investigation",
@@ -377,7 +387,7 @@
     },
     {
       "operation": "update_a_secret_incident",
-      "title": "Update a Secret Incident",
+      "title": "Update Secret Incident",
       "annotation": "update_a_secret_incident",
       "description": "Update a secret incident\u0027s Severity",
       "category": "investigation",
@@ -450,7 +460,7 @@
     },
     {
       "operation": "assign_a_secret_incident",
-      "title": "Assign a secret incident ",
+      "title": "Assign Secret Incident ",
       "annotation": "assign_a_secret_incident",
       "description": "Assign secret incident detected by the GitGuardian dashboard to a workspace member by email.",
       "category": "investigation",
@@ -525,7 +535,7 @@
     },
     {
       "operation": "unassign_a_secret_incident",
-      "title": "Unassign a secret incident ",
+      "title": "Unassign Secret Incident ",
       "annotation": "unassign_a_secret_incident",
       "description": "Unassign secret incident from a workspace member by email.",
       "category": "investigation",
@@ -580,7 +590,7 @@
     },
     {
       "operation": "resolve_a_secret_incident",
-      "title": "Resolve a secret incident ",
+      "title": "Resolve Secret Incident ",
       "annotation": "resolve_a_secret_incident",
       "description": "Resolve a secret incident detected by the GitGuardian dashboard.",
       "category": "investigation",
@@ -646,7 +656,7 @@
     },
     {
       "operation": "content_scan",
-      "title": "Content Scan",
+      "title": "Scan Document\u0027s Content",
       "annotation": "content_scan",
       "description": "Scan provided document content for policy breaks.",
       "category": "investigation",
@@ -655,24 +665,28 @@
       "enabled": true,
       "parameters": [
         {
-          "name": "filename",
-          "title": "Filename",
-          "type": "text",
+          "name": "input",
+          "title": "Type",
+          "type": "select",
           "editable": true,
           "visible": true,
-          "required": false,
-          "tooltip": "Specify the name of the File you want to Scan.",
-          "description": "Specify the name of the File you want to Scan."
+          "required": true,
+          "tooltip": "Type of file that you want to submit to GitGuardian for analysis. Type can be an Attachment ID or a File IRI.",
+          "description": "Type of file that you want to submit to GitGuardian for analysis. Type can be an Attachment ID or a File IRI.",
+          "options": [
+            "Attachment ID",
+            "File IRI"
+          ]
         },
         {
-          "name": "document",
-          "title": "Document",
+          "name": "value",
+          "title": "Reference ID",
           "type": "text",
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the Inner Content of the Document which is to be scanned.",
-          "description": "Specify the Inner Content of the Document which is to be scanned."
+          "tooltip": "Reference ID that is used to access the attachment metadata from the FortiSOAR™ Attachments module.In the playbook, if you select \u0027Attachment ID\u0027, this defaults to the {{vars.attachment_id}} value or if you select \u0027File IRI\u0027, then this defaults to the {{vars.file_iri}} value.",
+          "description": "Reference ID that is used to access the attachment metadata from the FortiSOAR™ Attachments module.In the playbook, if you select \u0027Attachment ID\u0027, this defaults to the {{vars.attachment_id}} value or if you select \u0027File IRI\u0027, then this defaults to the {{vars.file_iri}} value."
         }
       ],
       "open": false,
@@ -700,7 +714,7 @@
     },
     {
       "operation": "list_secret_occurrences",
-      "title": "List secret occurrences ",
+      "title": "Get Secret Occurrences Details",
       "annotation": "list_secret_occurrences",
       "description": "List occurrences of secrets in the monitored perimeter.",
       "category": "investigation",
@@ -708,16 +722,6 @@
       "visible": true,
       "enabled": true,
       "parameters": [
-        {
-          "name": "cursor",
-          "title": "Cursor",
-          "type": "text",
-          "editable": true,
-          "visible": true,
-          "required": false,
-          "tooltip": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there.",
-          "description": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there."
-        },
         {
           "name": "per_page",
           "title": "Number of Incidents Per Page",
@@ -757,6 +761,26 @@
           "required": false,
           "tooltip": "Specify the ID of the incident which is to be retrieved.",
           "description": "Specify the ID of the incident which is to be retrieved."
+        },
+        {
+          "name": "date_before",
+          "title": "Incidents Before the Date",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Before Date by which Entries found before this date will be shown.",
+          "description": "Specify the Before Date by which Entries found before this date will be shown."
+        },
+        {
+          "name": "date_after",
+          "title": "Incidents After the Date",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the After Date by which Entries found after this date will be shown.",
+          "description": "Specify the After Date by which Entries found after this date will be shown."
         },
         {
           "name": "presence",
@@ -819,24 +843,14 @@
           "description": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027"
         },
         {
-          "name": "date_before",
-          "title": "Incidents before the Date",
-          "type": "datetime",
+          "name": "cursor",
+          "title": "Cursor",
+          "type": "text",
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Before Date by which Entries found before this date will be shown.",
-          "description": "Specify the Before Date by which Entries found before this date will be shown."
-        },
-        {
-          "name": "date_after",
-          "title": "Incidents after the Date",
-          "type": "datetime",
-          "editable": true,
-          "visible": true,
-          "required": false,
-          "tooltip": "Specify the After Date by which Entries found after this date will be shown.",
-          "description": "Specify the After Date by which Entries found after this date will be shown."
+          "tooltip": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there.",
+          "description": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there."
         }
       ],
       "open": false,
@@ -884,33 +898,6 @@
   ],
   "active": true,
   "system": false,
-  "playbook_collections": [
-    {
-      "@id": "/api/3/workflow_collections/7bf01932-0432-4973-9716-52f58ac23153",
-      "name": "Sample - GitGuardian - 1.0.0",
-      "description": "Sample playbooks for \"GitGuardian\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete."
-    }
-  ],
-  "icon_small": "",
-  "icon_large": "",
-  "help_online": "",
-  "status": "Completed",
-  "install_result": {
-    "output": "",
-    "message": "Success"
-  },
-  "config_count": 1,
   "ingestion_supported": false,
-  "tags": [],
-  "remote_status": {
-    "output": "",
-    "status": "finished",
-    "message": "Success"
-  },
-  "installed": true,
-  "created": "2023-05-04T05:07:49.665665Z",
-  "modified": "2023-05-04T05:07:49.665720Z",
-  "requirements_installed": "Completed",
-  "agent": "8fc5a3c6ac306ee2189e9f3c5249378c",
-  "forked_from": "gitguardian_1_0_0"
+  "tags": []
 }

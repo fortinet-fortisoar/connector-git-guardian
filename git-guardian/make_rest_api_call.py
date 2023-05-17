@@ -39,10 +39,7 @@ def filter_cursors_from_url(res):
 class MakeRestApiCall:
 
     def __init__(self, config):
-        self.server_url = config.get('server_url', '').strip().strip('/')
-        if not self.server_url.startswith('http') or not self.server_url.startswith('https'):
-            self.server_url = 'https://' + self.server_url
-        self.authkey = config.get("authkey", '')
+        self.server_url = "https://api.gitguardian.com/"
         self.verify_ssl = config.get("verify_ssl", True)
         self.method_header = {"Authorization": f"Token {config.get('api_key')}"}
 

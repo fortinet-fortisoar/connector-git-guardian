@@ -6,7 +6,7 @@ Copyright end """
 from .make_rest_api_call import MakeRestApiCall, build_payload
 
 def assign_a_secret_incident(config: dict, params: dict) -> dict:
-    endpoint = f"api.gitguardian.com/v1/incidents/secrets/{params.get('incident_id')}/assign"
+    endpoint = f"v1/incidents/secrets/{params.get('incident_id')}/assign"
     method = "POST"
     filtered_params = build_payload(params)
     MK = MakeRestApiCall(config=config)

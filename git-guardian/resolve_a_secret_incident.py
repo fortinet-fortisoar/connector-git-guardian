@@ -7,7 +7,7 @@ from .make_rest_api_call import MakeRestApiCall
 
 
 def resolve_a_secret_incident(config: dict, params: dict) -> dict:
-    endpoint = f"api.gitguardian.com/v1/incidents/secrets/{params.get('incident_id')}/resolve"
+    endpoint = f"v1/incidents/secrets/{params.get('incident_id')}/resolve"
     method = "POST"
     method_data = {"secret_revoked": params.get('secret_revoked')}
 

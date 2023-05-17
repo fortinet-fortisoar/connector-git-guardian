@@ -7,7 +7,7 @@ from .make_rest_api_call import MakeRestApiCall, build_payload, filter_cursors_f
 
 
 def list_secret_occurrences(config: dict, params: dict) -> dict:
-    endpoint = "api.gitguardian.com/v1/occurrences/secrets"  # edit endpoint
+    endpoint = "v1/occurrences/secrets"  # edit endpoint
     method = "GET"  # GET/POST/PUT/DELETE
     filtered_params = build_payload(params)
     MK = MakeRestApiCall(config=config)
