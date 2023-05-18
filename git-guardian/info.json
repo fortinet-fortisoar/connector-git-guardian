@@ -714,7 +714,7 @@
     },
     {
       "operation": "list_secret_occurrences",
-      "title": "Get Secret Occurrences Details",
+      "title": "Get Secret Occurrences List",
       "annotation": "list_secret_occurrences",
       "description": "List occurrences of secrets in the monitored perimeter.",
       "category": "investigation",
