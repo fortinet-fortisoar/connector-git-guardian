@@ -1,0 +1,903 @@
+{
+  "name": "git-guardian",
+  "version": "1.0.0",
+  "label": "GitGuardian",
+  "description": "Scan your Source Code to detect API Keys, Passwords, Certificates, Encryption Keys and other sensitive data in Real-time.",
+  "publisher": "Fortinet",
+  "category": "Vulnerability and Risk Management",
+  "icon_small_name": "small.jpg",
+  "icon_large_name": "large.jpg",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "id": 38,
+  "configuration": {
+    "fields": [
+      {
+        "name": "api_key",
+        "title": "API Key",
+        "type": "text",
+        "editable": true,
+        "visible": true,
+        "required": true,
+        "tooltip": "Specify the API Key which you have generated in GitGuardian. Your API key can be created and revoked from the API section of your dashboard on GitGuardian.",
+        "description": "Specify the API Key which you have generated in GitGuardian. Your API key can be created and revoked from the API section of your dashboard on GitGuardian."
+      },
+      {
+        "name": "verify_ssl",
+        "title": "Verify SSL",
+        "type": "checkbox",
+        "editable": true,
+        "visible": true,
+        "required": false,
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not. By default, this option is set as True."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "list_secret_incidents",
+      "title": "Get Secret Incidents List",
+      "annotation": "list_secret_incidents",
+      "description": "List secret incidents detected by the GitGuardian dashboard. Occurrences are not returned in this route.",
+      "category": "investigation",
+      "tooltip": "List secret incidents detected by the GitGuardian dashboard. Occurrences are not returned in this route.",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "per_page",
+          "title": "Number of Incidents Per Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Number of incidents you want to see per page. By Default, The number of Secret Occurrences per_page is 20.",
+          "description": "Number of items to list per page. By Default Number of Items per Page is 20."
+        },
+        {
+          "name": "date_before",
+          "title": "Incidents Before the Date",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Before Date by which Entries found before this date will be shown.",
+          "description": "Specify the Before Date by which Entries found before this date will be shown."
+        },
+        {
+          "name": "date_after",
+          "title": "Incidents After the Date",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the After Date by which Entries found after this date will be shown.",
+          "description": "Specify the After Date by which Entries found after this date will be shown."
+        },
+        {
+          "name": "status",
+          "title": "Status",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Filter Incidents with the following status. You can Select the following options (Ignored, Triggered, Assigned, Resolved)",
+          "description": "Filter Incidents with the following status. You can Select the following options (Ignored, Triggered, Assigned, Resolved)",
+          "options": [
+            "Ignored",
+            "Triggered",
+            "Assigned",
+            "Resolved"
+          ]
+        },
+        {
+          "name": "severity",
+          "title": "Severity",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the severeness of the Incident. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
+          "description": "Specify the severeness of the Incident. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
+          "options": [
+            "Critical",
+            "High",
+            "Medium",
+            "Low",
+            "Info",
+            "Unknown"
+          ]
+        },
+        {
+          "name": "validity",
+          "title": "Validity",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Show the List of Secrets with the following validity. You can choose from (Valid, Invalid, Failed to Check, No Checker, Unknown)",
+          "description": "Show the List of Secrets with the following validity. You can choose from (Valid, Invalid, Failed to Check, No Checker, Unknown)",
+          "options": [
+            "Valid",
+            "Invalid",
+            "Failed to Check",
+            "No Checker",
+            "Unknown"
+          ]
+        },
+        {
+          "name": "tags",
+          "title": "Tags",
+          "type": "multiselect",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Filter Incidents with one of the following tags. Use None if you want to filter incidents with no tags.",
+          "description": "Filter Incidents with one of the following tags. Use None if you want to filter incidents with no tags.",
+          "options": [
+            "From Historical Scan",
+            "Ignored in Check Run",
+            "Public",
+            "Regression",
+            "Sensitive File",
+            "Test File",
+            "None"
+          ]
+        },
+        {
+          "name": "ordering",
+          "title": "Ordering",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Sort the results by their field value.",
+          "description": "Sort the results by their field value.",
+          "options": [
+            "Date (Ascending)",
+            "Date (Descending)",
+            "Resolved At (Ascending)",
+            "Resolved At (Descending)",
+            "Ignored At (Ascending)",
+            "Ignored At (Descending)"
+          ]
+        },
+        {
+          "name": "assignee_email",
+          "title": "Assignee Email",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Email Id of the member which is to be assigned the Incident.",
+          "description": "Specify the Email Id of the member which is to be assigned the Incident."
+        },
+        {
+          "name": "assignee_id",
+          "title": "Assignee ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Member ID of the member which is to be assigned the Incident.",
+          "description": "Specify the Member ID of the member which is to be assigned the Incident."
+        },
+        {
+          "name": "detector_group_name",
+          "title": "Detector Group Name",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Group Name of the Detector by which Incidents having the specified Group Name will be filtered.",
+          "description": "Specify the Group Name of the Detector by which Incidents having the specified Group Name will be filtered."
+        },
+        {
+          "name": "ignorer_id",
+          "title": "Ignorer ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the User ID by which Incidents having User ID as given Specified ID will be ignored.",
+          "description": "Specify the User ID by which Incidents having User ID as given Specified ID will be ignored."
+        },
+        {
+          "name": "ignorer_api_token_id",
+          "title": "Ignorer API Token ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the API Token ID by which Incidents having API Token as the given specified Token ID  will be ignored and not be shown.",
+          "description": "Specify the API Token ID by which Incidents having API Token as the given specified Token ID  will be ignored and not be shown."
+        },
+        {
+          "name": "resolver_id",
+          "title": "Resolver ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the ID of the Resolver by which Incidents having Resolver ID same as your provided Resolver ID will be filtered and shown.",
+          "description": "Specify the ID of the Resolver by which Incidents having Resolver ID same as your provided Resolver ID will be filtered and shown."
+        },
+        {
+          "name": "resolver_api_token_id",
+          "title": "Resolver API Token ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the API Token ID by which Incidents having Resolver API Token as your specified Token ID  will be shown.",
+          "description": "Specify the API Token ID by which Incidents having Resolver API Token as your specified Token ID  will be shown."
+        },
+        {
+          "name": "cursor",
+          "title": "Cursor",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there.",
+          "description": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there."
+        }
+      ],
+      "open": false,
+      "output_schema": [
+        {
+          "id": "",
+          "date": "",
+          "tags": [],
+          "status": "",
+          "detector": {
+            "name": "",
+            "family": "",
+            "nature": "",
+            "display_name": "",
+            "detector_group_name": "",
+            "detector_group_display_name": ""
+          },
+          "severity": "",
+          "validity": "",
+          "share_url": "",
+          "ignored_at": "",
+          "ignorer_id": "",
+          "regression": "",
+          "assignee_id": "",
+          "occurrences": "",
+          "resolved_at": "",
+          "resolver_id": "",
+          "secret_hash": "",
+          "ignore_reason": "",
+          "assignee_email": "",
+          "secret_revoked": "",
+          "gitguardian_url": "",
+          "occurrences_count": "",
+          "ignorer_api_token_id": "",
+          "resolver_api_token_id": ""
+        }
+      ]
+    },
+    {
+      "operation": "retrieve_a_secret_incident",
+      "title": "Get Secret Incident Details",
+      "annotation": "retrieve_a_secret_incident",
+      "description": "Retrieve secret incident detected by the GitGuardian dashboard with its occurrences.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "incident_id",
+          "title": "Incident ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the ID of the incident whose Details are to be retrieved.",
+          "description": "Specify the ID of the incident whose Details are to be retrieved."
+        },
+        {
+          "name": "with_occurrences",
+          "title": "Number of Occurrences",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Number of Occurrences of the Incident which are to be Fetched. Maximum these much occurences of Incident will be fetched. Defaullt value of Number of Occurrences is 20.",
+          "description": "Retrieve a number of occurrences of this incident."
+        }
+      ],
+      "open": false,
+      "output_schema": {
+        "id": "",
+        "date": "",
+        "tags": [],
+        "status": "",
+        "detector": {
+          "name": "",
+          "family": "",
+          "nature": "",
+          "display_name": "",
+          "detector_group_name": "",
+          "detector_group_display_name": ""
+        },
+        "severity": "",
+        "validity": "",
+        "share_url": "",
+        "ignored_at": "",
+        "ignorer_id": "",
+        "regression": "",
+        "assignee_id": "",
+        "occurrences": [
+          {
+            "id": "",
+            "sha": "",
+            "url": "",
+            "date": "",
+            "kind": "",
+            "source": {
+              "id": "",
+              "url": "",
+              "type": "",
+              "health": "",
+              "full_name": "",
+              "last_scan": {
+                "date": "",
+                "status": ""
+              },
+              "visibility": "",
+              "external_id": "",
+              "open_incidents_count": "",
+              "closed_incidents_count": ""
+            },
+            "matches": [
+              {
+                "name": "",
+                "indice_end": "",
+                "indice_start": "",
+                "pre_line_end": "",
+                "post_line_end": "",
+                "pre_line_start": "",
+                "post_line_start": ""
+              }
+            ],
+            "filepath": "",
+            "presence": "",
+            "author_info": "",
+            "author_name": "",
+            "incident_id": ""
+          }
+        ],
+        "resolved_at": "",
+        "resolver_id": "",
+        "secret_hash": "",
+        "ignore_reason": "",
+        "assignee_email": "",
+        "secret_revoked": "",
+        "gitguardian_url": "",
+        "occurrences_count": "",
+        "ignorer_api_token_id": "",
+        "resolver_api_token_id": ""
+      }
+    },
+    {
+      "operation": "update_a_secret_incident",
+      "title": "Update Secret Incident",
+      "annotation": "update_a_secret_incident",
+      "description": "Update a secret incident\u0027s Severity",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "incident_id",
+          "title": "Incident ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the ID of the incident which is to be updated.",
+          "description": "Specify the ID of the incident which is to be updated."
+        },
+        {
+          "name": "severity",
+          "title": "Severity",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the severeness of the Incident. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
+          "description": "Specify the severeness of the Incident. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
+          "options": [
+            "Critical",
+            "High",
+            "Medium",
+            "Low",
+            "Info",
+            "Unknown"
+          ]
+        }
+      ],
+      "open": false,
+      "output_schema": {
+        "id": "",
+        "date": "",
+        "tags": [],
+        "status": "",
+        "detector": {
+          "name": "",
+          "family": "",
+          "nature": "",
+          "display_name": "",
+          "detector_group_name": "",
+          "detector_group_display_name": ""
+        },
+        "severity": "",
+        "validity": "",
+        "share_url": "",
+        "ignored_at": "",
+        "ignorer_id": "",
+        "regression": "",
+        "assignee_id": "",
+        "occurrences": "",
+        "resolved_at": "",
+        "resolver_id": "",
+        "secret_hash": "",
+        "ignore_reason": "",
+        "assignee_email": "",
+        "secret_revoked": "",
+        "gitguardian_url": "",
+        "occurrences_count": "",
+        "ignorer_api_token_id": "",
+        "resolver_api_token_id": ""
+      }
+    },
+    {
+      "operation": "assign_a_secret_incident",
+      "title": "Assign Secret Incident ",
+      "annotation": "assign_a_secret_incident",
+      "description": "Assign secret incident detected by the GitGuardian dashboard to a workspace member by email.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "incident_id",
+          "title": "Incident ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the ID of the incident whose Assignee is to be added.",
+          "description": "Specify the ID of the incident whose Assignee is to be added."
+        },
+        {
+          "name": "email",
+          "title": "Email",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Email Id of the member which is to be assigned the Incident.",
+          "description": "Specify the Email Id of the member which is to be assigned the Incident."
+        },
+        {
+          "name": "member_id",
+          "title": "Member ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Member Id of the member which is to be assigned the Incident.",
+          "description": "Specify the Member Id of the member which is to be assigned the Incident."
+        }
+      ],
+      "open": false,
+      "output_schema": {
+        "id": "",
+        "date": "",
+        "tags": [],
+        "status": "",
+        "detector": {
+          "name": "",
+          "family": "",
+          "nature": "",
+          "display_name": "",
+          "detector_group_name": "",
+          "detector_group_display_name": ""
+        },
+        "severity": "",
+        "validity": "",
+        "share_url": "",
+        "ignored_at": "",
+        "ignorer_id": "",
+        "regression": "",
+        "assignee_id": "",
+        "occurrences": "",
+        "resolved_at": "",
+        "resolver_id": "",
+        "secret_hash": "",
+        "ignore_reason": "",
+        "assignee_email": "",
+        "secret_revoked": "",
+        "gitguardian_url": "",
+        "occurrences_count": "",
+        "ignorer_api_token_id": "",
+        "resolver_api_token_id": ""
+      }
+    },
+    {
+      "operation": "unassign_a_secret_incident",
+      "title": "Unassign Secret Incident ",
+      "annotation": "unassign_a_secret_incident",
+      "description": "Unassign secret incident from a workspace member by email.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "incident_id",
+          "title": "Incident ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the ID of the incident whose Assignee is to be removed.",
+          "description": "Specify the ID of the incident whose Assignee is to be removed."
+        }
+      ],
+      "open": false,
+      "output_schema": {
+        "id": "",
+        "date": "",
+        "tags": [],
+        "status": "",
+        "detector": {
+          "name": "",
+          "family": "",
+          "nature": "",
+          "display_name": "",
+          "detector_group_name": "",
+          "detector_group_display_name": ""
+        },
+        "severity": "",
+        "validity": "",
+        "share_url": "",
+        "ignored_at": "",
+        "ignorer_id": "",
+        "regression": "",
+        "assignee_id": "",
+        "occurrences": "",
+        "resolved_at": "",
+        "resolver_id": "",
+        "secret_hash": "",
+        "ignore_reason": "",
+        "assignee_email": "",
+        "secret_revoked": "",
+        "gitguardian_url": "",
+        "occurrences_count": "",
+        "ignorer_api_token_id": "",
+        "resolver_api_token_id": ""
+      }
+    },
+    {
+      "operation": "resolve_a_secret_incident",
+      "title": "Resolve Secret Incident ",
+      "annotation": "resolve_a_secret_incident",
+      "description": "Resolve a secret incident detected by the GitGuardian dashboard.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "secret_revoked",
+          "title": "Secret Revoked",
+          "type": "checkbox",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "value": false,
+          "tooltip": "Check the checkbox If you want to revoke the Incident",
+          "description": "Check the checkbox If you want to revoke the Incident"
+        },
+        {
+          "name": "incident_id",
+          "title": "Incident ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify The id of the incident which is to be retrieved.",
+          "description": "Specify The id of the incident which is to be retrieved."
+        }
+      ],
+      "open": false,
+      "output_schema": {
+        "id": "",
+        "date": "",
+        "tags": [],
+        "status": "",
+        "detector": {
+          "name": "",
+          "family": "",
+          "nature": "",
+          "display_name": "",
+          "detector_group_name": "",
+          "detector_group_display_name": ""
+        },
+        "severity": "",
+        "validity": "",
+        "share_url": "",
+        "ignored_at": "",
+        "ignorer_id": "",
+        "regression": "",
+        "assignee_id": "",
+        "occurrences": "",
+        "resolved_at": "",
+        "resolver_id": "",
+        "secret_hash": "",
+        "ignore_reason": "",
+        "assignee_email": "",
+        "secret_revoked": "",
+        "gitguardian_url": "",
+        "occurrences_count": "",
+        "ignorer_api_token_id": "",
+        "resolver_api_token_id": ""
+      }
+    },
+    {
+      "operation": "content_scan",
+      "title": "Scan Document\u0027s Content",
+      "annotation": "content_scan",
+      "description": "Scan provided document content for policy breaks.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "input",
+          "title": "Type",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Type of file that you want to submit to GitGuardian for analysis. Type can be an Attachment ID or a File IRI.",
+          "description": "Type of file that you want to submit to GitGuardian for analysis. Type can be an Attachment ID or a File IRI.",
+          "options": [
+            "Attachment ID",
+            "File IRI"
+          ]
+        },
+        {
+          "name": "value",
+          "title": "Reference ID",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Reference ID that is used to access the attachment metadata from the FortiSOAR™ Attachments module.In the playbook, if you select \u0027Attachment ID\u0027, this defaults to the {{vars.attachment_id}} value or if you select \u0027File IRI\u0027, then this defaults to the {{vars.file_iri}} value.",
+          "description": "Reference ID that is used to access the attachment metadata from the FortiSOAR™ Attachments module.In the playbook, if you select \u0027Attachment ID\u0027, this defaults to the {{vars.attachment_id}} value or if you select \u0027File IRI\u0027, then this defaults to the {{vars.file_iri}} value."
+        }
+      ],
+      "open": false,
+      "output_schema": {
+        "policies": [],
+        "policy_breaks": [
+          {
+            "type": "",
+            "policy": "",
+            "matches": [
+              {
+                "type": "",
+                "match": "",
+                "line_end": "",
+                "index_end": "",
+                "line_start": "",
+                "index_start": ""
+              }
+            ],
+            "validity": ""
+          }
+        ],
+        "policy_break_count": ""
+      }
+    },
+    {
+      "operation": "list_secret_occurrences",
+      "title": "Get Secret Occurrences List",
+      "annotation": "list_secret_occurrences",
+      "description": "List occurrences of secrets in the monitored perimeter.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "per_page",
+          "title": "Number of Incidents Per Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Number of occurrences you want to see per page. By Default, The number of Secret Occurrences per_page is 20",
+          "description": "Number of items to list per page. By Default Number of Items per Page is 20."
+        },
+        {
+          "name": "source_id",
+          "title": "Source ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Source ID to which incidents having the same Source ID are to be filtered and shown.",
+          "description": "Specify the Source ID to which incidents having the same Source ID are to be filtered and shown."
+        },
+        {
+          "name": "source_name",
+          "title": "Source Name",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Source Name to which incidents having the same Source Name are to be filtered and shown.",
+          "description": "Specify the Source Name to which incidents having the same Source Name are to be filtered and shown."
+        },
+        {
+          "name": "incident_id",
+          "title": "Incident ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the ID of the incident which is to be retrieved.",
+          "description": "Specify the ID of the incident which is to be retrieved."
+        },
+        {
+          "name": "date_before",
+          "title": "Incidents Before the Date",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Before Date by which Entries found before this date will be shown.",
+          "description": "Specify the Before Date by which Entries found before this date will be shown."
+        },
+        {
+          "name": "date_after",
+          "title": "Incidents After the Date",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the After Date by which Entries found after this date will be shown.",
+          "description": "Specify the After Date by which Entries found after this date will be shown."
+        },
+        {
+          "name": "presence",
+          "title": "Presence",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Fetch Entries that have the following presence status. You can use Either \u0027present\u0027 OR \u0027removed\u0027",
+          "description": "Entries that have the following presence status."
+        },
+        {
+          "name": "author_name",
+          "title": "Author Name",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Author Name to which incidents having same Author Name filtered. Should have minimum of 3 characters",
+          "description": "Specify the Author Name to which incidents having same Author Name filtered. Should have minimum of 3 characters"
+        },
+        {
+          "name": "author_info",
+          "title": "Author Info",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Author Info to which incidents having same Author Info are filtered. Should have minimum of 3 characters",
+          "description": "Specify the Author Info to which incidents having same Author Info are filtered. Should have minimum of 3 characters"
+        },
+        {
+          "name": "sha",
+          "title": "Sha",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Commit \"Sha\" search string to which incidents are to be filtered. Should have minimum of 3 characters\n\nExample: sha\u003dfccebf0562698ab99dc10dcb2e864fc563b25ac4",
+          "description": "Entries starting with the commit sha search string."
+        },
+        {
+          "name": "filepath",
+          "title": "Filepath",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Filepath to which incidents are to be filtered. Should have minimum of 3 characters",
+          "description": "Entries matching this filepath search."
+        },
+        {
+          "name": "ordering",
+          "title": "Ordering",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027",
+          "description": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027"
+        },
+        {
+          "name": "cursor",
+          "title": "Cursor",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there.",
+          "description": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there."
+        }
+      ],
+      "open": false,
+      "output_schema": [
+        {
+          "id": "",
+          "sha": "",
+          "url": "",
+          "date": "",
+          "kind": "",
+          "source": {
+            "id": "",
+            "url": "",
+            "type": "",
+            "health": "",
+            "full_name": "",
+            "last_scan": {
+              "date": "",
+              "status": ""
+            },
+            "visibility": "",
+            "external_id": "",
+            "open_incidents_count": "",
+            "closed_incidents_count": ""
+          },
+          "matches": [
+            {
+              "name": "",
+              "indice_end": "",
+              "indice_start": "",
+              "pre_line_end": "",
+              "post_line_end": "",
+              "pre_line_start": "",
+              "post_line_start": ""
+            }
+          ],
+          "filepath": "",
+          "presence": "",
+          "author_info": "",
+          "author_name": "",
+          "incident_id": ""
+        }
+      ]
+    }
+  ],
+  "active": true,
+  "system": false,
+  "ingestion_supported": false,
+  "tags": []
+}
