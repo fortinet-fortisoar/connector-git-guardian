@@ -14,7 +14,7 @@ logger = get_logger("git-guardian")
 
 VALID_DICT = {"Valid": "valid", "Invalid": "invalid", "Failed to Check": "failed_to_check",
               "No Checker": "no_checker", "Unknown": "unknown", "From Historical Scan": "FROM_HISTORICAL_SCAN",
-              "Ignored in Check Run": "IGNORED_IN_CHECK_RUN", "Public": "PUBLIC", "Default Branch" : "DEFAULT_BRANCH",
+              "Ignored in Check Run": "IGNORED_IN_CHECK_RUN", "Public": "PUBLIC", "Default Branch": "DEFAULT_BRANCH",
               "Regression": "REGRESSION", "Sensitive File": "SENSITIVE_FILE", "Test File": "TEST_FILE",
               "No Tags": "NONE", "Critical": "critical", "High": "high", "Medium": "medium", "Low": "low",
               "Info": "info", "Ignored": "IGNORED", "Triggered": "TRIGGERED",
@@ -23,10 +23,17 @@ VALID_DICT = {"Valid": "valid", "Invalid": "invalid", "Failed to Check": "failed
               "Ignored At (Ascending)": "ignored_at", "Ignored At (Descending)": "-ignored_at"}
 
 list_sources_dict = {"Last Scan Date (Ascending)": "last_scan_date", "Last Scan Date (Descending)": "-last_scan_date",
-                     "Pending": "pending", "Running": "running", "Canceled": "canceled", "Failed": "failed", "Too Large": "too_large",
-                     "Timeout": "timeout", "Finished": "finished", "Safe": "safe", "Unknown": "unknown", "At Risk": "at_risk",
-                     "Bitbucket": "bitbucket", "Github": "github", "Gitlab": "gitlab", "Azure Devops": "azure_devops", "Public": "public",
+                     "Pending": "pending", "Running": "running", "Canceled": "canceled", "Failed": "failed",
+                     "Too Large": "too_large",
+                     "Timeout": "timeout", "Finished": "finished", "Safe": "safe", "Unknown": "unknown",
+                     "At Risk": "at_risk",
+                     "Bitbucket": "bitbucket", "Github": "github", "Gitlab": "gitlab", "Azure Devops": "azure_devops",
+                     "Public": "public",
                      "Private": "private", "Internal": "internal"}
+
+members_list_dict = {"Created At (Ascending)": "created_at", "Created At (Descending)": "-created_at",
+                     "Last Login (Ascending)": "last_login", "Last Login (Descending)": "-last_login",
+                     "Owner": "owner", "Manager": "manager","Member": "member","Restricted": "restricted"}
 
 
 def list_secret_incidents(config: dict, params: dict) -> dict:
@@ -43,14 +50,6 @@ def list_secret_incidents(config: dict, params: dict) -> dict:
             result_list = [VALID_DICT.get(x) for x in filtered_params.get("tags")]
             resultString = ','.join(result_list)
             filtered_params.update({"tags": resultString})
-
-        if filtered_params.get('per_page') is not None:
-            per_page = filtered_params.get('per_page')
-            if type(per_page) is str:
-                raise Exception("Number of Incidents per page can't be a String")
-
-            if per_page <= 0:
-                raise Exception("Number of Incidents can't be Negative or Zero")
 
         MK = MakeRestApiCall(config=config)
         response = MK.make_request(endpoint=endpoint, method=method, params=filtered_params)
@@ -165,14 +164,6 @@ def list_secret_occurrences(config: dict, params: dict) -> dict:
             resultString = ','.join(result_list)
             filtered_params.update({"tags": resultString})
 
-        if filtered_params.get('per_page') is not None:
-            per_page = filtered_params.get('per_page')
-            if type(per_page) is str:
-                raise Exception("Number of Occurrences per page can't be a String")
-
-            if per_page <= 0:
-                raise Exception("Number of Occurrences can't be Negative or Zero")
-
         MK = MakeRestApiCall(config=config)
         response = MK.make_request(endpoint=endpoint, method=method, params=filtered_params)
 
@@ -187,10 +178,18 @@ def list_secret_occurrences(config: dict, params: dict) -> dict:
 
 def get_members_list(config: dict, params: dict) -> dict:
     try:
+        filtered_params = build_payload(params)
         endpoint = "v1/members"
         method = "GET"
+        params_check = ['ordering', 'role']
+        for p in params_check:
+            if filtered_params.get(p) is not None:
+                filtered_params.update({f"{p}": members_list_dict.get(filtered_params.get(p))})
+
         MK = MakeRestApiCall(config=config)
-        response = MK.make_request(endpoint=endpoint, method=method)
+        response = MK.make_request(endpoint=endpoint, method=method, params=filtered_params)
+        if isinstance(response, dict):
+            response = filter_cursors_from_url(response)
 
         return response
     except Exception as err:
@@ -207,14 +206,6 @@ def list_sources(config: dict, params: dict) -> dict:
         for p in params_check:
             if filtered_params.get(p) is not None:
                 filtered_params.update({f"{p}": list_sources_dict.get(filtered_params.get(p))})
-
-        if filtered_params.get('per_page') is not None:
-            per_page = filtered_params.get('per_page')
-            if type(per_page) is str:
-                raise Exception("Number of Sources per page can't be a String")
-
-            if per_page <= 0:
-                raise Exception("Number of Sources can't be Negative or Zero")
 
         MK = MakeRestApiCall(config=config)
         response = MK.make_request(endpoint=endpoint, method=method, params=filtered_params)

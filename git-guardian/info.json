@@ -395,7 +395,7 @@
       "operation": "update_a_secret_incident",
       "title": "Update Secret Incident",
       "annotation": "update_a_secret_incident",
-      "description": "Updates a secret incident's severity based on the incident ID and the severity that you have specified.",
+      "description": "Updates a secret incident\u0027s severity based on the incident ID and the severity that you have specified.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -691,8 +691,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify a reference ID to access the attachment metadata from FortiSOAR\u2122's Attachments module. If you have selected Attachment ID, this defaults to the {{vars.attachment_id}} value. If you have selected File IRI, then this defaults to the {{vars.file_iri}} value.",
-          "description": "Specify a reference ID to access the attachment metadata from FortiSOAR\u2122's Attachments module. If you have selected Attachment ID, this defaults to the {{vars.attachment_id}} value. If you have selected File IRI, then this defaults to the {{vars.file_iri}} value."
+          "tooltip": "Specify a reference ID to access the attachment metadata from FortiSOAR™\u0027s Attachments module. If you have selected Attachment ID, this defaults to the {{vars.attachment_id}} value. If you have selected File IRI, then this defaults to the {{vars.file_iri}} value.",
+          "description": "Specify a reference ID to access the attachment metadata from FortiSOAR™\u0027s Attachments module. If you have selected Attachment ID, this defaults to the {{vars.attachment_id}} value. If you have selected File IRI, then this defaults to the {{vars.file_iri}} value."
         },
         {
           "name": "filename",
@@ -944,7 +944,70 @@
       "is_config_required": true,
       "visible": true,
       "enabled": true,
-      "parameters": [],
+      "parameters": [
+        {
+          "name": "per_page",
+          "title": "Number of Members per page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Number of Members to list per page. By Default, This parameters value is 20.",
+          "description": "Number of Members to list per page. By Default, This parameters value is 20."
+        },
+        {
+          "name": "role",
+          "title": "Role",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Filter members based on their role.",
+          "description": "Filter members based on their role.\n",
+          "options": [
+            "Owner",
+            "Manager",
+            "Member",
+            "Restricted"
+          ]
+        },
+        {
+          "name": "search",
+          "title": "Search",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Search members based on their name or email.",
+          "description": "Search members based on their name or email."
+        },
+        {
+          "name": "ordering",
+          "title": "Ordering",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
+          "description": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
+          "options": [
+            "Created At (Ascending)",
+            "Created At (Descending)",
+            "Last Login (Ascending)",
+            "Last Login (Descending)"
+          ]
+        },
+        {
+          "name": "cursor",
+          "title": "Cursor",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the pagination cursor token for listing the next or previous page. Next and previous cursors are shown only when the list spans multiple pages and has a next or a previous page.",
+          "description": "Specify the pagination cursor token for listing the next or previous page. Next and previous cursors are shown only when the list spans multiple pages and has a next or a previous page."
+        }
+      ],
       "output_schema": [
         {
           "id": "",
@@ -977,8 +1040,8 @@
           "description": "Specify the number of items to list per page. By default, number of items per page is 20. "
         },
         {
-          "name": "source",
-          "title": "Source",
+          "name": "search",
+          "title": "Search",
           "type": "text",
           "editable": true,
           "visible": true,
@@ -1043,8 +1106,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a '-'.",
-          "description": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a '-'.",
+          "tooltip": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
+          "description": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
           "options": [
             "Last Scan Date (Ascending)",
             "Last Scan Date (Descending)"
