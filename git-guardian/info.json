@@ -207,16 +207,6 @@
           "description": "Specify the user ID of assignee whose secret incidents are to be ignored and hence not listed.You can get the Member ID of the user from Get Members List action."
         },
         {
-          "name": "ignorer_api_token_id",
-          "title": "Ignorer API Token ID",
-          "type": "text",
-          "editable": true,
-          "visible": true,
-          "required": false,
-          "tooltip": "Specify the API token ID by which incidents with the specified API token are to be ignored and hence not listed.",
-          "description": "Specify the API token ID by which incidents with the specified API token are to be ignored and hence not listed."
-        },
-        {
           "name": "resolver_id",
           "title": "Resolver ID",
           "type": "integer",
@@ -225,16 +215,6 @@
           "required": false,
           "tooltip": "Specify the ID of the resolver by which incidents with the specified Resolver ID are to be listed. You can get the Member ID of the user from Get Members List action.",
           "description": "Specify the ID of the resolver by which incidents with the specified Resolver ID are to be listed. You can get the Member ID of the user from Get Members List action."
-        },
-        {
-          "name": "resolver_api_token_id",
-          "title": "Resolver API Token ID",
-          "type": "text",
-          "editable": true,
-          "visible": true,
-          "required": false,
-          "tooltip": "Specify the API token ID by which incidents with the specified API token are to be listed.",
-          "description": "Specify the API token ID by which incidents with the specified API token are to be listed."
         },
         {
           "name": "cursor",
