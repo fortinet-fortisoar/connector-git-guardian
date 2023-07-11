@@ -2,12 +2,13 @@
   "name": "git-guardian",
   "version": "1.0.0",
   "label": "GitGuardian",
-  "description": "Scan your Source Code to detect API Keys, Passwords, Certificates, Encryption Keys and other sensitive data in Real-time.",
+  "description": "GitGuardian is a cybersecurity platform that specializes in detecting and preventing the exposure of sensitive information in source code repositories, specifically Git repositories. It is designed to help organizations and developers protect their code and prevent the accidental or unauthorized exposure of credentials, API keys, tokens, and other sensitive data that may be present in code repositories. ",
   "publisher": "Fortinet",
   "category": "Vulnerability and Risk Management",
   "icon_small_name": "small.jpg",
   "icon_large_name": "large.jpg",
   "cs_approved": true,
+  "help_online": "https://docs.fortinet.com/document/fortisoar/1.0.0/gitguardian/600/gitguardian-v1-0-0",
   "cs_compatible": true,
   "id": 38,
   "configuration": {
@@ -15,11 +16,11 @@
       {
         "name": "api_key",
         "title": "API Key",
-        "type": "text",
+        "type": "password",
         "editable": true,
         "visible": true,
         "required": true,
-        "tooltip": "Specify the API Key which you have generated in GitGuardian. Your API key can be created and revoked from the API section of your dashboard on GitGuardian.",
+        "tooltip": "Specify the API Key that you have generated on the GitGuardian portal. Your API key can be created and revoked from the API section of your dashboard on GitGuardian.",
         "description": "Specify the API Key which you have generated in GitGuardian. Your API key can be created and revoked from the API section of your dashboard on GitGuardian."
       },
       {
@@ -39,9 +40,9 @@
       "operation": "list_secret_incidents",
       "title": "Get Secret Incidents List",
       "annotation": "list_secret_incidents",
-      "description": "List secret incidents detected by the GitGuardian dashboard. Occurrences are not returned in this route.",
+      "description": "Lists secret incidents detected by the GitGuardian dashboard based on the date range, status, severity, and other filter criteria that you have specified. Occurrences are not returned in this route.",
       "category": "investigation",
-      "tooltip": "List secret incidents detected by the GitGuardian dashboard. Occurrences are not returned in this route.",
+      "tooltip": "Lists secret incidents detected by the GitGuardian dashboard based on the date range, status, severity, and other filter criteria that you have specified. Occurrences are not returned in this route.",
       "is_config_required": true,
       "visible": true,
       "enabled": true,
@@ -53,18 +54,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Number of incidents you want to see per page. By Default, The number of Secret Occurrences per_page is 20.",
-          "description": "Number of items to list per page. By Default Number of Items per Page is 20."
-        },
-        {
-          "name": "date_before",
-          "title": "Incidents Before the Date",
-          "type": "datetime",
-          "editable": true,
-          "visible": true,
-          "required": false,
-          "tooltip": "Specify the Before Date by which Entries found before this date will be shown.",
-          "description": "Specify the Before Date by which Entries found before this date will be shown."
+          "tooltip": "Specify the number of items to list per page. By default, number of items per page is 20.",
+          "description": "Specify the number of items to list per page. By default, number of items per page is 20."
         },
         {
           "name": "date_after",
@@ -73,8 +64,18 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the After Date by which Entries found after this date will be shown.",
-          "description": "Specify the After Date by which Entries found after this date will be shown."
+          "tooltip": "Specify the start of the date range after which the incidents are to be listed. Date format should be in ISO 8601 Format Ex - 2023-07-03T06:45:30.011936Z",
+          "description": "Specify the start of the date range after which the incidents are to be listed. Date format should be in ISO 8601 Format Ex - 2023-07-03T06:45:30.011936Z"
+        },
+        {
+          "name": "date_before",
+          "title": "Incidents Before the Date",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the end of the date range before which the incidents are to be listed. Date format should be in ISO 8601 Format Ex - 2023-07-03T06:45:30.011936Z",
+          "description": "Specify the end of the date range before which the incidents are to be listed. Date format should be in ISO 8601 Format Ex - 2023-07-03T06:45:30.011936Z"
         },
         {
           "name": "status",
@@ -99,8 +100,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the severeness of the Incident. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
-          "description": "Specify the severeness of the Incident. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
+          "tooltip": "Specify the severity to filter Incidents. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
+          "description": "Specify the severity to filter Incidents. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
           "options": [
             "Critical",
             "High",
@@ -117,8 +118,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Show the List of Secrets with the following validity. You can choose from (Valid, Invalid, Failed to Check, No Checker, Unknown)",
-          "description": "Show the List of Secrets with the following validity. You can choose from (Valid, Invalid, Failed to Check, No Checker, Unknown)",
+          "tooltip": "Select the validity to filter incidents.. You can choose from (Valid, Invalid, Failed to Check, No Checker, Unknown)",
+          "description": "Select the validity to filter incidents.. You can choose from (Valid, Invalid, Failed to Check, No Checker, Unknown)",
           "options": [
             "Valid",
             "Invalid",
@@ -134,16 +135,17 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Filter Incidents with one of the following tags. Use None if you want to filter incidents with no tags.",
-          "description": "Filter Incidents with one of the following tags. Use None if you want to filter incidents with no tags.",
+          "tooltip": "Select the tags to filter incidents. Use None if you want to filter incidents with no tags.You can select multiple tags from following options: Select one or more options, From Historical Scan, Ignored in Check Run, Public,Default Branch ,Regression, Sensitive File, Test File ,No Tags.",
+          "description": "Select the tags to filter incidents. Use None if you want to filter incidents with no tags.You can select multiple tags from following options: Select one or more options, From Historical Scan, Ignored in Check Run, Public,Default Branch ,Regression, Sensitive File, Test File ,No Tags.",
           "options": [
             "From Historical Scan",
             "Ignored in Check Run",
             "Public",
+            "Default Branch",
             "Regression",
             "Sensitive File",
             "Test File",
-            "None"
+            "No Tags"
           ]
         },
         {
@@ -171,8 +173,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Email Id of the member which is to be assigned the Incident.",
-          "description": "Specify the Email Id of the member which is to be assigned the Incident."
+          "tooltip": "Specify the email address of the assignee to filter the secret incidents list.",
+          "description": "Specify the email address of the assignee to filter the secret incidents list."
         },
         {
           "name": "assignee_id",
@@ -181,8 +183,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Member ID of the member which is to be assigned the Incident.",
-          "description": "Specify the Member ID of the member which is to be assigned the Incident."
+          "tooltip": "Specify the member ID of the assignee to filter the secret incidents list. You can get the Member ID of the user from Get Members List action.",
+          "description": "Specify the member ID of the assignee to filter the secret incidents list. You can get the Member ID of the user from Get Members List action."
         },
         {
           "name": "detector_group_name",
@@ -191,8 +193,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Group Name of the Detector by which Incidents having the specified Group Name will be filtered.",
-          "description": "Specify the Group Name of the Detector by which Incidents having the specified Group Name will be filtered."
+          "tooltip": "Specify the group name of the detector to filter the secret incidents list.",
+          "description": "Specify the group name of the detector to filter the secret incidents list."
         },
         {
           "name": "ignorer_id",
@@ -201,18 +203,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the User ID by which Incidents having User ID as given Specified ID will be ignored.",
-          "description": "Specify the User ID by which Incidents having User ID as given Specified ID will be ignored."
-        },
-        {
-          "name": "ignorer_api_token_id",
-          "title": "Ignorer API Token ID",
-          "type": "text",
-          "editable": true,
-          "visible": true,
-          "required": false,
-          "tooltip": "Specify the API Token ID by which Incidents having API Token as the given specified Token ID  will be ignored and not be shown.",
-          "description": "Specify the API Token ID by which Incidents having API Token as the given specified Token ID  will be ignored and not be shown."
+          "tooltip": "Specify the user ID of assignee whose secret incidents are to be ignored and hence not listed.You can get the Member ID of the user from Get Members List action.",
+          "description": "Specify the user ID of assignee whose secret incidents are to be ignored and hence not listed.You can get the Member ID of the user from Get Members List action."
         },
         {
           "name": "resolver_id",
@@ -221,18 +213,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the ID of the Resolver by which Incidents having Resolver ID same as your provided Resolver ID will be filtered and shown.",
-          "description": "Specify the ID of the Resolver by which Incidents having Resolver ID same as your provided Resolver ID will be filtered and shown."
-        },
-        {
-          "name": "resolver_api_token_id",
-          "title": "Resolver API Token ID",
-          "type": "text",
-          "editable": true,
-          "visible": true,
-          "required": false,
-          "tooltip": "Specify the API Token ID by which Incidents having Resolver API Token as your specified Token ID  will be shown.",
-          "description": "Specify the API Token ID by which Incidents having Resolver API Token as your specified Token ID  will be shown."
+          "tooltip": "Specify the ID of the resolver by which incidents with the specified Resolver ID are to be listed. You can get the Member ID of the user from Get Members List action.",
+          "description": "Specify the ID of the resolver by which incidents with the specified Resolver ID are to be listed. You can get the Member ID of the user from Get Members List action."
         },
         {
           "name": "cursor",
@@ -241,8 +223,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there.",
-          "description": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there."
+          "tooltip": "Specify the pagination cursor token for listing the next or previous page. Next and previous cursors are shown only when the list spans multiple pages and has a next or a previous page.",
+          "description": "Specify the pagination cursor token for listing the next or previous page. Next and previous cursors are shown only when the list spans multiple pages and has a next or a previous page."
         }
       ],
       "open": false,
@@ -285,7 +267,7 @@
       "operation": "retrieve_a_secret_incident",
       "title": "Get Secret Incident Details",
       "annotation": "retrieve_a_secret_incident",
-      "description": "Retrieve secret incident detected by the GitGuardian dashboard with its occurrences.",
+      "description": "Retrieves secret incident details as detected by the GitGuardian dashboard with its occurrences based on the incident ID and the number of occurrences that you have specified.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -308,88 +290,92 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Number of Occurrences of the Incident which are to be Fetched. Maximum these much occurences of Incident will be fetched. Defaullt value of Number of Occurrences is 20.",
-          "description": "Retrieve a number of occurrences of this incident."
+          "tooltip": "Specify the number of occurrences of this incident to retrieve. Default value of Number of Occurrences is 20.",
+          "description": "Specify the number of occurrences of this incident to retrieve. Default value of Number of Occurrences is 20."
         }
       ],
       "open": false,
       "output_schema": {
-        "id": "",
+        "assignee_id": "",
+        "assignee_email": "",
         "date": "",
-        "tags": [],
-        "status": "",
         "detector": {
           "name": "",
-          "family": "",
-          "nature": "",
           "display_name": "",
+          "nature": "",
+          "family": "",
           "detector_group_name": "",
           "detector_group_display_name": ""
         },
-        "severity": "",
-        "validity": "",
-        "share_url": "",
+        "gitguardian_url": "",
+        "id": "",
+        "ignore_reason": "",
         "ignored_at": "",
+        "ignorer_api_token_id": "",
         "ignorer_id": "",
-        "regression": "",
-        "assignee_id": "",
         "occurrences": [
           {
-            "id": "",
-            "sha": "",
-            "url": "",
+            "author_info": "",
+            "author_name": "",
             "date": "",
+            "filepath": "",
+            "id": "",
+            "incident_id": "",
             "kind": "",
+            "matches": [
+              {
+                "name": "",
+                "indice_start": "",
+                "indice_end": "",
+                "pre_line_start": "",
+                "pre_line_end": "",
+                "post_line_start": "",
+                "post_line_end": ""
+              }
+            ],
+            "presence": "",
+            "sha": "",
+            "location": "",
             "source": {
               "id": "",
               "url": "",
               "type": "",
-              "health": "",
               "full_name": "",
+              "health": "",
+              "default_branch": "",
+              "default_branch_head": "",
+              "open_incidents_count": "",
+              "closed_incidents_count": "",
+              "visibility": "",
               "last_scan": {
                 "date": "",
                 "status": ""
               },
-              "visibility": "",
-              "external_id": "",
-              "open_incidents_count": "",
-              "closed_incidents_count": ""
+              "external_id": ""
             },
-            "matches": [
-              {
-                "name": "",
-                "indice_end": "",
-                "indice_start": "",
-                "pre_line_end": "",
-                "post_line_end": "",
-                "pre_line_start": "",
-                "post_line_start": ""
-              }
-            ],
-            "filepath": "",
-            "presence": "",
-            "author_info": "",
-            "author_name": "",
-            "incident_id": ""
+            "url": "",
+            "tags": []
           }
         ],
+        "tags": [],
+        "occurrences_count": "",
+        "regression": "",
         "resolved_at": "",
+        "resolver_api_token_id": "",
         "resolver_id": "",
         "secret_hash": "",
-        "ignore_reason": "",
-        "assignee_email": "",
         "secret_revoked": "",
-        "gitguardian_url": "",
-        "occurrences_count": "",
-        "ignorer_api_token_id": "",
-        "resolver_api_token_id": ""
+        "status": "",
+        "validity": "",
+        "share_url": "",
+        "severity": ""
       }
     },
     {
       "operation": "update_a_secret_incident",
       "title": "Update Secret Incident",
       "annotation": "update_a_secret_incident",
-      "description": "Update a secret incident\u0027s Severity",
+      "description": "Updates a secret incident\u0027s severity based on the incident ID and the severity that you have specified.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -412,8 +398,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the severeness of the Incident. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
-          "description": "Specify the severeness of the Incident. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
+          "tooltip": "Select the severity to update. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
+          "description": "Select the severity to update. You can Use following options (Critical, High, Medium, Low, Info, Unknown).",
           "options": [
             "Critical",
             "High",
@@ -462,7 +448,7 @@
       "operation": "assign_a_secret_incident",
       "title": "Assign Secret Incident ",
       "annotation": "assign_a_secret_incident",
-      "description": "Assign secret incident detected by the GitGuardian dashboard to a workspace member by email.",
+      "description": "Assigns a secret incident detected by the GitGuardian dashboard to a workspace member based on the incident ID, email address, and member ID that you have specified.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -475,8 +461,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the ID of the incident whose Assignee is to be added.",
-          "description": "Specify the ID of the incident whose Assignee is to be added."
+          "tooltip": "Specify the incident ID to be assigned.",
+          "description": "Specify the incident ID to be assigned."
         },
         {
           "name": "email",
@@ -485,8 +471,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Email Id of the member which is to be assigned the Incident.",
-          "description": "Specify the Email Id of the member which is to be assigned the Incident."
+          "tooltip": "Specify the email address of the member to be assigned to this incident. This parameter is mutually exclusive with Member ID",
+          "description": "Specify the email address of the member to be assigned to this incident. This parameter is mutually exclusive with Member ID"
         },
         {
           "name": "member_id",
@@ -495,8 +481,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Member Id of the member which is to be assigned the Incident.",
-          "description": "Specify the Member Id of the member which is to be assigned the Incident."
+          "tooltip": "Specify the ID of the member to be assigned to this incident. This parameter is mutually exclusive with Email",
+          "description": "Specify the ID of the member to be assigned to this incident. This parameter is mutually exclusive with Email"
         }
       ],
       "open": false,
@@ -537,7 +523,7 @@
       "operation": "unassign_a_secret_incident",
       "title": "Unassign Secret Incident ",
       "annotation": "unassign_a_secret_incident",
-      "description": "Unassign secret incident from a workspace member by email.",
+      "description": "Unassigns a secret incident based on the incident ID that you have specified.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -550,8 +536,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify the ID of the incident whose Assignee is to be removed.",
-          "description": "Specify the ID of the incident whose Assignee is to be removed."
+          "tooltip": "Specify the incident ID whose assignee is to be removed.",
+          "description": "Specify the incident ID whose assignee is to be removed."
         }
       ],
       "open": false,
@@ -592,7 +578,7 @@
       "operation": "resolve_a_secret_incident",
       "title": "Resolve Secret Incident ",
       "annotation": "resolve_a_secret_incident",
-      "description": "Resolve a secret incident detected by the GitGuardian dashboard.",
+      "description": "Resolves and Revokes (If Given) a secret incident detected by the GitGuardian dashboard based on the incident ID that you have specified.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -606,8 +592,8 @@
           "visible": true,
           "required": true,
           "value": false,
-          "tooltip": "Check the checkbox If you want to revoke the Incident",
-          "description": "Check the checkbox If you want to revoke the Incident"
+          "tooltip": "Select the checkbox to revoke the secret related to the incident.",
+          "description": "Select the checkbox to revoke the secret related to the incident."
         },
         {
           "name": "incident_id",
@@ -616,8 +602,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Specify The id of the incident which is to be retrieved.",
-          "description": "Specify The id of the incident which is to be retrieved."
+          "tooltip": "Specify The ID of the incident to retrieve and mark as resolved.",
+          "description": "Specify The ID of the incident to retrieve and mark as resolved."
         }
       ],
       "open": false,
@@ -656,9 +642,9 @@
     },
     {
       "operation": "content_scan",
-      "title": "Scan Document\u0027s Content",
+      "title": "Scan Documents Content",
       "annotation": "content_scan",
-      "description": "Scan provided document content for policy breaks.",
+      "description": "Scans provided document content for policy breaks based on the document attachment type and its reference ID that you have specified.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -671,8 +657,8 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Type of file that you want to submit to GitGuardian for analysis. Type can be an Attachment ID or a File IRI.",
-          "description": "Type of file that you want to submit to GitGuardian for analysis. Type can be an Attachment ID or a File IRI.",
+          "tooltip": "Select a method of file submission to GitGuardian for analysis. You can select from following options: (Attachment ID, File IRI)",
+          "description": "Select a method of file submission to GitGuardian for analysis. You can select from following options: (Attachment ID, File IRI)",
           "options": [
             "Attachment ID",
             "File IRI"
@@ -685,8 +671,18 @@
           "editable": true,
           "visible": true,
           "required": true,
-          "tooltip": "Reference ID that is used to access the attachment metadata from the FortiSOAR™ Attachments module.In the playbook, if you select \u0027Attachment ID\u0027, this defaults to the {{vars.attachment_id}} value or if you select \u0027File IRI\u0027, then this defaults to the {{vars.file_iri}} value.",
-          "description": "Reference ID that is used to access the attachment metadata from the FortiSOAR™ Attachments module.In the playbook, if you select \u0027Attachment ID\u0027, this defaults to the {{vars.attachment_id}} value or if you select \u0027File IRI\u0027, then this defaults to the {{vars.file_iri}} value."
+          "tooltip": "Specify a reference ID to access the attachment metadata from FortiSOAR™\u0027s Attachments module. If you have selected Attachment ID, this defaults to the {{vars.attachment_id}} value. If you have selected File IRI, then this defaults to the {{vars.file_iri}} value.",
+          "description": "Specify a reference ID to access the attachment metadata from FortiSOAR™\u0027s Attachments module. If you have selected Attachment ID, this defaults to the {{vars.attachment_id}} value. If you have selected File IRI, then this defaults to the {{vars.file_iri}} value."
+        },
+        {
+          "name": "filename",
+          "title": "Filename",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": true,
+          "tooltip": "Specify the Filename of the attachment along with its extension.",
+          "description": "Specify the Filename of the attachment along with its extension."
         }
       ],
       "open": false,
@@ -716,7 +712,7 @@
       "operation": "list_secret_occurrences",
       "title": "Get Secret Occurrences List",
       "annotation": "list_secret_occurrences",
-      "description": "List occurrences of secrets in the monitored perimeter.",
+      "description": "Lists occurrences of secrets in the monitored perimeter based on the date range, occurrence count, source name and other filter criteria that you have specified.",
       "category": "investigation",
       "is_config_required": true,
       "visible": true,
@@ -724,13 +720,13 @@
       "parameters": [
         {
           "name": "per_page",
-          "title": "Number of Incidents Per Page",
+          "title": "Number of Occurrences per page",
           "type": "integer",
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Number of occurrences you want to see per page. By Default, The number of Secret Occurrences per_page is 20",
-          "description": "Number of items to list per page. By Default Number of Items per Page is 20."
+          "tooltip": "Specify the number of Occurrences to list per page. By default, number of items per page is 20.",
+          "description": "Specify the number of Occurrences to list per page. By default, number of items per page is 20."
         },
         {
           "name": "source_id",
@@ -739,8 +735,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Source ID to which incidents having the same Source ID are to be filtered and shown.",
-          "description": "Specify the Source ID to which incidents having the same Source ID are to be filtered and shown."
+          "tooltip": "Specify the source ID to filter the secret occurrences with the same source ID. You can get the Source ID from the Action LIST SOURCES.",
+          "description": "Specify the source ID to filter the secret occurrences with the same source ID. You can get the Source ID from the Action LIST SOURCES."
         },
         {
           "name": "source_name",
@@ -749,8 +745,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Source Name to which incidents having the same Source Name are to be filtered and shown.",
-          "description": "Specify the Source Name to which incidents having the same Source Name are to be filtered and shown."
+          "tooltip": "Specify the source name to filter the secret occurrences with the same source name.",
+          "description": "Specify the source name to filter the secret occurrences with the same source name."
         },
         {
           "name": "incident_id",
@@ -759,28 +755,28 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the ID of the incident which is to be retrieved.",
-          "description": "Specify the ID of the incident which is to be retrieved."
-        },
-        {
-          "name": "date_before",
-          "title": "Incidents Before the Date",
-          "type": "datetime",
-          "editable": true,
-          "visible": true,
-          "required": false,
-          "tooltip": "Specify the Before Date by which Entries found before this date will be shown.",
-          "description": "Specify the Before Date by which Entries found before this date will be shown."
+          "tooltip": "Specify the incident ID to filter the list of secret occurrences retrieved.",
+          "description": "Specify the incident ID to filter the list of secret occurrences retrieved."
         },
         {
           "name": "date_after",
-          "title": "Incidents After the Date",
+          "title": "Occurrences After Date",
           "type": "datetime",
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the After Date by which Entries found after this date will be shown.",
-          "description": "Specify the After Date by which Entries found after this date will be shown."
+          "tooltip": "Specify the start of the date range after which the incidents are to be listed. Date format should be in ISO 8601 Format Ex - 2023-07-03T06:45:30.011936Z",
+          "description": "Specify the After Date by which Entries found after this date will be shown. Date format should be in ISO 8601 Format Ex - 2023-07-03T06:45:30.011936Z"
+        },
+        {
+          "name": "date_before",
+          "title": "Occurrences Before Date",
+          "type": "datetime",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the end of the date range before which the incidents are to be listed. Date format should be in ISO 8601 Format Ex - 2023-07-03T06:45:30.011936Z",
+          "description": "Specify the end of the date range before which the incidents are to be listed. Date format should be in ISO 8601 Format Ex - 2023-07-03T06:45:30.011936Z"
         },
         {
           "name": "presence",
@@ -789,8 +785,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Fetch Entries that have the following presence status. You can use Either \u0027present\u0027 OR \u0027removed\u0027",
-          "description": "Entries that have the following presence status."
+          "tooltip": "Specify if the secret occurrences are present or removed.",
+          "description": "Specify if the secret occurrences are present or removed."
         },
         {
           "name": "author_name",
@@ -799,8 +795,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Author Name to which incidents having same Author Name filtered. Should have minimum of 3 characters",
-          "description": "Specify the Author Name to which incidents having same Author Name filtered. Should have minimum of 3 characters"
+          "tooltip": "Specify the author name to filter the occurrences related to the specified name. You must specify a minimum of 3 characters.",
+          "description": "Specify the author name to filter the occurrences related to the specified name. You must specify a minimum of 3 characters."
         },
         {
           "name": "author_info",
@@ -809,8 +805,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Author Info to which incidents having same Author Info are filtered. Should have minimum of 3 characters",
-          "description": "Specify the Author Info to which incidents having same Author Info are filtered. Should have minimum of 3 characters"
+          "tooltip": "Specify the author email address to filter the occurrences related to the specified email. You must specify a minimum of 3 characters.",
+          "description": "Specify the author email address to filter the occurrences related to the specified email. You must specify a minimum of 3 characters."
         },
         {
           "name": "sha",
@@ -819,8 +815,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Commit \"Sha\" search string to which incidents are to be filtered. Should have minimum of 3 characters\n\nExample: sha\u003dfccebf0562698ab99dc10dcb2e864fc563b25ac4",
-          "description": "Entries starting with the commit sha search string."
+          "tooltip": "Specify the commit SHA to search in the retrieved occurrences.",
+          "description": "Specify the commit SHA to search in the retrieved occurrences."
         },
         {
           "name": "filepath",
@@ -829,8 +825,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Filepath to which incidents are to be filtered. Should have minimum of 3 characters",
-          "description": "Entries matching this filepath search."
+          "tooltip": "Specify the filepath to search in the retrieved occurrences.",
+          "description": "Specify the filepath to search in the retrieved occurrences."
         },
         {
           "name": "ordering",
@@ -839,8 +835,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027",
-          "description": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027"
+          "tooltip": "Specify the sort criteria to order of the results. The default sort order is ascending (ASC). To sort in descending order precede the criteria by a -",
+          "description": "Specify the sort criteria to order of the results. The default sort order is ascending (ASC). To sort in descending order precede the criteria by a -"
         },
         {
           "name": "cursor",
@@ -849,49 +845,307 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there.",
-          "description": "Specify the Pagination Cursor Token for Going to the Next or Previous Page. Next Cursor and Previous Cursor will be shown, If Next Page or Previous Page is there."
+          "tooltip": "Specify the pagination cursor token for listing the next or previous page. Next and previous cursors are shown only when the list spans multiple pages and has a next or a previous page.",
+          "description": "Specify the pagination cursor token for listing the next or previous page. Next and previous cursors are shown only when the list spans multiple pages and has a next or a previous page."
+        },
+        {
+          "name": "tags",
+          "title": "Tags",
+          "type": "multiselect",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Select the tags to filter Occurrences. Use None if you want to filter Occurrence of incidents with no tags.You can select multiple tags from following options: Select one or more options, From Historical Scan, Ignored in Check Run,Default Branch,Public, Regression, Sensitive File, Test File ,No Tags.",
+          "description": "Select the tags to filter Occurrences. Use None if you want to filter Occurrence of incidents with no tags.You can select multiple tags from following options: Select one or more options, From Historical Scan, Ignored in Check Run,Default Branch,Public, Regression, Sensitive File, Test File ,No Tags.",
+          "options": [
+            "From Historical Scan",
+            "Ignored in Check Run",
+            "Public",
+            "Default Branch",
+            "Regression",
+            "Sensitive File",
+            "Test File",
+            "No Tags"
+          ]
         }
       ],
       "open": false,
       "output_schema": [
         {
-          "id": "",
-          "sha": "",
-          "url": "",
+          "author_info": "",
+          "author_name": "",
           "date": "",
+          "filepath": "",
+          "id": "",
+          "incident_id": "",
           "kind": "",
+          "matches": [
+            {
+              "name": "",
+              "indice_start": "",
+              "indice_end": "",
+              "pre_line_start": "",
+              "pre_line_end": "",
+              "post_line_start": "",
+              "post_line_end": ""
+            }
+          ],
+          "presence": "",
+          "sha": "",
+          "location": "",
           "source": {
             "id": "",
             "url": "",
             "type": "",
-            "health": "",
             "full_name": "",
+            "health": "",
+            "default_branch": "",
+            "default_branch_head": "",
+            "open_incidents_count": "",
+            "closed_incidents_count": "",
+            "visibility": "",
             "last_scan": {
               "date": "",
               "status": ""
             },
-            "visibility": "",
-            "external_id": "",
-            "open_incidents_count": "",
-            "closed_incidents_count": ""
+            "external_id": ""
           },
-          "matches": [
-            {
-              "name": "",
-              "indice_end": "",
-              "indice_start": "",
-              "pre_line_end": "",
-              "post_line_end": "",
-              "pre_line_start": "",
-              "post_line_start": ""
-            }
-          ],
-          "filepath": "",
-          "presence": "",
-          "author_info": "",
-          "author_name": "",
-          "incident_id": ""
+          "url": "",
+          "tags": []
+        }
+      ]
+    },
+    {
+      "operation": "get_members_list",
+      "title": "Get Members List",
+      "annotation": "get_members_list",
+      "description": "List Details such as Member Id, Name, Email about workspace Members.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "per_page",
+          "title": "Number of Members per page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Number of Members to list per page. By Default, This parameters value is 20.",
+          "description": "Number of Members to list per page. By Default, This parameters value is 20."
+        },
+        {
+          "name": "role",
+          "title": "Role",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Filter members based on their role.",
+          "description": "Filter members based on their role.\n",
+          "options": [
+            "Owner",
+            "Manager",
+            "Member",
+            "Restricted"
+          ]
+        },
+        {
+          "name": "search",
+          "title": "Search",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Search members based on their name or email.",
+          "description": "Search members based on their name or email."
+        },
+        {
+          "name": "ordering",
+          "title": "Ordering",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
+          "description": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
+          "options": [
+            "Created At (Ascending)",
+            "Created At (Descending)",
+            "Last Login (Ascending)",
+            "Last Login (Descending)"
+          ]
+        },
+        {
+          "name": "cursor",
+          "title": "Cursor",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the pagination cursor token for listing the next or previous page. Next and previous cursors are shown only when the list spans multiple pages and has a next or a previous page.",
+          "description": "Specify the pagination cursor token for listing the next or previous page. Next and previous cursors are shown only when the list spans multiple pages and has a next or a previous page."
+        }
+      ],
+      "output_schema": [
+        {
+          "id": "",
+          "role": "",
+          "name": "",
+          "email": "",
+          "created_at": "",
+          "last_login": ""
+        }
+      ]
+    },
+    {
+      "operation": "list_sources",
+      "title": "Get Sources List",
+      "annotation": "list_sources",
+      "description": "List VCS (Github Repositories) sources monitored by GitGuardian.",
+      "category": "investigation",
+      "is_config_required": true,
+      "visible": true,
+      "enabled": true,
+      "parameters": [
+        {
+          "name": "per_page",
+          "title": "Per Page",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the number of items to list per page. By default, number of items per page is 20. ",
+          "description": "Specify the number of items to list per page. By default, number of items per page is 20. "
+        },
+        {
+          "name": "search",
+          "title": "Search",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Filter Sources matching this string.",
+          "description": "Filter Sources matching this string."
+        },
+        {
+          "name": "last_scan_status",
+          "title": "Last Scan Status",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Filter sources based on the status of their latest historical scan.",
+          "description": "Filter sources based on the status of their latest historical scan.",
+          "options": [
+            "Pending",
+            "Running",
+            "Canceled",
+            "Failed",
+            "Too Large",
+            "Timeout",
+            "Finished"
+          ]
+        },
+        {
+          "name": "health",
+          "title": "Health",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Filter sources based on their health status.",
+          "description": "Filter sources based on their health status.",
+          "options": [
+            "Safe",
+            "Unknown",
+            "At Risk"
+          ]
+        },
+        {
+          "name": "type",
+          "title": "Type",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Filter Sources by integration type.",
+          "description": "Filter Sources by integration type.",
+          "options": [
+            "Bitbucket",
+            "Github",
+            "Gitlab",
+            "Azure Devops"
+          ]
+        },
+        {
+          "name": "ordering",
+          "title": "Ordering",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
+          "description": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
+          "options": [
+            "Last Scan Date (Ascending)",
+            "Last Scan Date (Descending)"
+          ]
+        },
+        {
+          "name": "visibility",
+          "title": "Visibility",
+          "type": "select",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Filter Sources by visibility status.",
+          "description": "Filter Sources by visibility status.",
+          "options": [
+            "Public",
+            "Private",
+            "Internal"
+          ]
+        },
+        {
+          "name": "cursor",
+          "title": "Cursor",
+          "type": "text",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Specify the pagination cursor token for listing the next or previous page. Next and previous cursors are shown only when the list spans multiple pages and has a next or a previous page.",
+          "description": "Specify the pagination cursor token for listing the next or previous page. Next and previous cursors are shown only when the list spans multiple pages and has a next or a previous page."
+        },
+        {
+          "name": "external_id",
+          "title": "External ID",
+          "type": "integer",
+          "editable": true,
+          "visible": true,
+          "required": false,
+          "tooltip": "Filter Sources by specified external ID.",
+          "description": "Filter Sources by specified external ID.\n\n"
+        }
+      ],
+      "output_schema": [
+        {
+          "id": "",
+          "url": "",
+          "type": "",
+          "full_name": "",
+          "health": "",
+          "default_branch": "",
+          "default_branch_head": "",
+          "open_incidents_count": "",
+          "closed_incidents_count": "",
+          "visibility": "",
+          "last_scan": {
+            "date": "",
+            "status": ""
+          },
+          "external_id": ""
         }
       ]
     }
