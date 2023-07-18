@@ -524,7 +524,7 @@
                 "route": "aa9e5eb0-5d75-4b1c-abd9-300df976c382",
                 "title": "GitGuardian: Scan Documents Content",
                 "resources": [
-                  "alerts"
+                  "attachments"
                 ],
                 "inputVariables": [],
                 "step_variables": {

@@ -835,8 +835,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the sort criteria to order of the results. The default sort order is ascending (ASC). To sort in descending order precede the criteria by a -",
-          "description": "Specify the sort criteria to order of the results. The default sort order is ascending (ASC). To sort in descending order precede the criteria by a -"
+          "tooltip": "Specify the sort criteria to order of the results.",
+          "description": "Specify the sort criteria to order of the results."
         },
         {
           "name": "cursor",
@@ -855,8 +855,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Select the tags to filter Occurrences. Use None if you want to filter Occurrence of incidents with no tags.You can select multiple tags from following options: Select one or more options, From Historical Scan, Ignored in Check Run,Default Branch,Public, Regression, Sensitive File, Test File ,No Tags.",
-          "description": "Select the tags to filter Occurrences. Use None if you want to filter Occurrence of incidents with no tags.You can select multiple tags from following options: Select one or more options, From Historical Scan, Ignored in Check Run,Default Branch,Public, Regression, Sensitive File, Test File ,No Tags.",
+          "tooltip": "Select the tags to filter Occurrences. Use No Tags if you want to filter Occurrence of incidents with no tags.You can select multiple tags from following options: Select one or more options, From Historical Scan, Ignored in Check Run,Default Branch,Public, Regression, Sensitive File, Test File ,No Tags.",
+          "description": "Select the tags to filter Occurrences. Use No Tags if you want to filter Occurrence of incidents with no tags.You can select multiple tags from following options: Select one or more options, From Historical Scan, Ignored in Check Run,Default Branch,Public, Regression, Sensitive File, Test File ,No Tags.",
           "options": [
             "From Historical Scan",
             "Ignored in Check Run",
@@ -932,8 +932,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Number of Members to list per page. By Default, This parameters value is 20.",
-          "description": "Number of Members to list per page. By Default, This parameters value is 20."
+          "tooltip": "Specify the number of members to list per page. By Default, this value is 20.",
+          "description": "Specify the number of members to list per page. By Default, this value is 20."
         },
         {
           "name": "role",
@@ -942,8 +942,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Filter members based on their role.",
-          "description": "Filter members based on their role.\n",
+          "tooltip": "Select a role to filter members.",
+          "description": "Select a role to filter members.",
           "options": [
             "Owner",
             "Manager",
@@ -958,8 +958,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Search members based on their name or email.",
-          "description": "Search members based on their name or email."
+          "tooltip": "Specify a name or an email address to search members based on their name or email address.",
+          "description": "Specify a name or an email address to search members based on their name or email address."
         },
         {
           "name": "ordering",
@@ -968,8 +968,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
-          "description": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
+          "tooltip": "Select the sort criteria and sort order to sort the results.",
+          "description": "Select the sort criteria and sort order to sort the results.",
           "options": [
             "Created At (Ascending)",
             "Created At (Descending)",
@@ -1016,8 +1016,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Specify the number of items to list per page. By default, number of items per page is 20. ",
-          "description": "Specify the number of items to list per page. By default, number of items per page is 20. "
+          "tooltip": "Specify the number of sources to list per page. By Default, this value is 20.",
+          "description": "Specify the number of sources to list per page. By Default, this value is 20."
         },
         {
           "name": "search",
@@ -1026,8 +1026,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Filter Sources matching this string.",
-          "description": "Filter Sources matching this string."
+          "tooltip": "Specify a text string to filter sources matching this string.",
+          "description": "Specify a text string to filter sources matching this string."
         },
         {
           "name": "last_scan_status",
@@ -1036,8 +1036,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Filter sources based on the status of their latest historical scan.",
-          "description": "Filter sources based on the status of their latest historical scan.",
+          "tooltip": "Select a scan status to filter sources based on the status of their latest historical scan.",
+          "description": "Select a scan status to filter sources based on the status of their latest historical scan.",
           "options": [
             "Pending",
             "Running",
@@ -1055,8 +1055,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Filter sources based on their health status.",
-          "description": "Filter sources based on their health status.",
+          "tooltip": "Select a status to filter sources based on their health status.",
+          "description": "Select a status to filter sources based on their health status.",
           "options": [
             "Safe",
             "Unknown",
@@ -1070,8 +1070,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Filter Sources by integration type.",
-          "description": "Filter Sources by integration type.",
+          "tooltip": "Select a version control system to filter sources.",
+          "description": "Select a version control system to filter sources.",
           "options": [
             "Bitbucket",
             "Github",
@@ -1086,8 +1086,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
-          "description": "Sort the results by their field value. The default sort is ASC, DESC if the field is preceded by a \u0027-\u0027.",
+          "tooltip": "Select the sort criteria and sort order to sort the results.",
+          "description": "Select the sort criteria and sort order to sort the results.",
           "options": [
             "Last Scan Date (Ascending)",
             "Last Scan Date (Descending)"
@@ -1100,8 +1100,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Filter Sources by visibility status.",
-          "description": "Filter Sources by visibility status.",
+          "tooltip": "Select the visibility status to filter sources by visibility status.",
+          "description": "Select the visibility status to filter sources by visibility status.",
           "options": [
             "Public",
             "Private",
@@ -1125,8 +1125,8 @@
           "editable": true,
           "visible": true,
           "required": false,
-          "tooltip": "Filter Sources by specified external ID.",
-          "description": "Filter Sources by specified external ID.\n\n"
+          "tooltip": "Specify an external ID to filter sources by the specified external ID.",
+          "description": "Specify an external ID to filter sources by the specified external ID."
         }
       ],
       "output_schema": [
